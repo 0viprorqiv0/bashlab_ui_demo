@@ -1,0 +1,812 @@
+<!DOCTYPE html><html class="h-full bg-[#0a0d14] text-slate-100 antialiased selection:bg-[#00ff66]/20 selection:text-[#00ff66]" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lesson 05: Create directories and files | Shell 101 — BashLab</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#00ff66',
+              cyan: '#00e5ff',
+              amber: '#f59e0b',
+              dark: '#0a0d14',
+              surface: '#10131a',
+              card: '#191b23',
+              terminal: '#080b10',
+              border: '#262a32',
+              'border-subtle': '#343a43'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Space Grotesk"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    /* Custom dark scrollbars for reading panel and terminal */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0d1017;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #262a32;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #343a43;
+    }
+  </style>
+<style data-purpose="cursor-animation">
+    @keyframes cursor-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .terminal-cursor {
+      animation: cursor-blink 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    .glow-dot {
+      box-shadow: 0 0 10px rgba(0, 255, 102, 0.65);
+    }
+    .amber-glow {
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col bg-brand-dark text-slate-200 overflow-hidden font-sans">
+<!-- BEGIN: CompactWorkspaceHeader -->
+<header class="h-12 flex-none border-b border-[#262a32] bg-[#0c0f16] px-3.5 flex items-center justify-between z-30 select-none relative" data-purpose="app-header">
+<!-- Left: Logo & Detailed Breadcrumbs -->
+<div class="flex items-center space-x-3 min-w-0">
+<a class="flex items-center space-x-2 group focus:outline-none" href="/courses">
+<div class="w-6 h-6 rounded bg-[#191b23] border border-[#343a43] flex items-center justify-center text-brand-green font-mono font-bold text-xs group-hover:border-brand-green/60 transition-colors shadow-sm">
+        &gt;_
+      </div>
+<span class="font-display font-bold text-sm tracking-tight text-white hidden sm:inline">
+        bash<span class="text-brand-green">Lab</span>
+</span>
+</a>
+<span class="text-slate-600 text-xs">/</span>
+<nav aria-label="Breadcrumb" class="flex items-center space-x-2 text-xs font-mono min-w-0 truncate">
+<a class="text-slate-400 hover:text-slate-200 transition-colors hidden md:inline" href="/courses">Courses</a>
+<span class="text-slate-600 hidden md:inline">/</span>
+<a class="text-slate-400 hover:text-slate-200 transition-colors truncate" href="/courses/shell-101">Shell 101</a>
+<span class="text-slate-600">/</span>
+<span class="text-slate-500 truncate hidden lg:inline">Chapter 02</span>
+<span class="text-slate-600 hidden lg:inline">/</span>
+<span class="text-brand-green font-medium flex items-center gap-1.5 truncate">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
+<span class="truncate">Lesson 05: Create directories &amp; files</span>
+</span>
+</nav>
+</div>
+<!-- Center: Interactive Lesson Switcher Pill & Dropdown -->
+<div class="relative hidden md:flex items-center">
+<div class="flex items-center bg-[#151820] border border-[#262a32] hover:border-brand-green/40 rounded-full px-1.5 py-0.5 text-xs font-mono transition-colors">
+<!-- Prev button with tooltip -->
+<div class="relative group/prev">
+<a class="p-1 rounded-full text-slate-400 hover:text-brand-green hover:bg-[#1f242e] transition-colors flex items-center justify-center" href="#lesson-4" id="prev-lesson-btn" title="Previous Lesson">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+<div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 hidden group-hover/prev:flex flex-col items-center z-50 pointer-events-none">
+<div class="bg-[#191b23] text-[11px] text-slate-200 border border-[#343a43] px-2.5 py-1 rounded shadow-xl whitespace-nowrap">
+<span class="text-slate-500">Prev:</span> Lesson 04 · Understand paths
+        </div>
+</div>
+</div>
+<!-- Dropdown Trigger Pill -->
+<button aria-expanded="false" aria-haspopup="true" class="px-2 py-0.5 text-slate-300 font-medium flex items-center gap-1.5 hover:text-white rounded-full transition-colors" id="lesson-switcher-btn">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-green glow-dot"></span>
+<span>Lesson 5</span>
+<span class="text-slate-500">/ 12</span>
+<svg class="w-3 h-3 text-slate-400 ml-0.5 transition-transform duration-150" fill="none" id="switcher-caret" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Next button with tooltip -->
+<div class="relative group/next">
+<a class="p-1 rounded-full text-slate-400 hover:text-brand-green hover:bg-[#1f242e] transition-colors flex items-center justify-center" href="#lesson-6" id="next-lesson-btn" title="Next Lesson">
+<svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+<div class="absolute left-1/2 -translate-x-1/2 top-full mt-2 hidden group-hover/next:flex flex-col items-center z-50 pointer-events-none">
+<div class="bg-[#191b23] text-[11px] text-slate-200 border border-[#343a43] px-2.5 py-1 rounded shadow-xl whitespace-nowrap">
+<span class="text-slate-500">Next:</span> Lesson 06 · Copy &amp; move files
+        </div>
+</div>
+</div>
+</div>
+<!-- Lesson Selector Dropdown Menu -->
+<div class="hidden absolute top-full left-1/2 -translate-x-1/2 mt-2 w-96 max-h-[75vh] overflow-y-auto bg-[#10131a] border border-[#2d323c] rounded-lg shadow-2xl z-50 p-2 text-xs font-mono space-y-3" id="lesson-switcher-menu">
+<div class="flex items-center justify-between px-2.5 pt-1 pb-1.5 border-b border-[#1f232b]">
+<span class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Shell 101 Curriculum</span>
+<span class="text-[10px] text-brand-green font-semibold bg-brand-green/10 border border-brand-green/30 px-1.5 py-0.5 rounded">4/12 Done</span>
+</div>
+<!-- Chapter 1 -->
+<div class="space-y-1">
+<div class="px-2.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 01: Navigate Filesystem</span>
+<span class="text-slate-600">4/4</span>
+</div>
+<!-- Lesson 1 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-1">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center text-[10px] font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate">01. Print working directory</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">pwd</code>
+<span class="text-slate-600 text-[10px]">5m</span>
+</div>
+</a>
+<!-- Lesson 2 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-2">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center text-[10px] font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate">02. List directory contents</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">ls</code>
+<span class="text-slate-600 text-[10px]">7m</span>
+</div>
+</a>
+<!-- Lesson 3 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-3">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center text-[10px] font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate">03. Change directory</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">cd</code>
+<span class="text-slate-600 text-[10px]">8m</span>
+</div>
+</a>
+<!-- Lesson 4 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-4">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full bg-brand-green/20 text-brand-green flex items-center justify-center text-[10px] font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate">04. Relative vs absolute paths</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">.. / ~</code>
+<span class="text-slate-600 text-[10px]">10m</span>
+</div>
+</a>
+</div>
+<!-- Chapter 2 -->
+<div class="space-y-1 pt-1 border-t border-[#1f232b]">
+<div class="px-2.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 02: Directories &amp; Files</span>
+<span class="text-brand-green">1/4 In Progress</span>
+</div>
+<!-- Lesson 5 (Active) -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded bg-brand-green/10 border border-brand-green/40 group" href="#lesson-5">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-2 h-2 rounded-full bg-brand-green glow-dot ml-1 mr-1"></span>
+<span class="text-brand-green font-semibold truncate">05. Create directories &amp; files</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-brand-green bg-brand-green/15 px-1.5 py-0.5 rounded border border-brand-green/30">mkdir, touch</code>
+<span class="text-brand-green text-[10px]">Active</span>
+</div>
+</a>
+<!-- Lesson 6 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-6">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">6</span>
+<span class="text-slate-300 group-hover:text-white truncate">06. Copy and move files</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">cp, mv</code>
+<span class="text-slate-600 text-[10px]">10m</span>
+</div>
+</a>
+<!-- Lesson 7 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-7">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">7</span>
+<span class="text-slate-300 group-hover:text-white truncate">07. Remove files &amp; recursive delete</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">rm, rm -rf</code>
+<span class="text-slate-600 text-[10px]">12m</span>
+</div>
+</a>
+<!-- Lesson 8 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-8">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">8</span>
+<span class="text-slate-300 group-hover:text-white truncate">08. Wildcards &amp; glob patterns</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-400 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">* ? [ ]</code>
+<span class="text-slate-600 text-[10px]">15m</span>
+</div>
+</a>
+</div>
+<!-- Chapter 3 -->
+<div class="space-y-1 pt-1 border-t border-[#1f232b]">
+<div class="px-2.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 03: Read &amp; Search Content</span>
+<span class="text-slate-600">0/4</span>
+</div>
+<!-- Lesson 9 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-9">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">9</span>
+<span class="text-slate-400 group-hover:text-slate-200 truncate">09. Inspect file contents</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-500 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">cat, less</code>
+<span class="text-slate-600 text-[10px]">8m</span>
+</div>
+</a>
+<!-- Lesson 10 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-10">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">10</span>
+<span class="text-slate-400 group-hover:text-slate-200 truncate">10. Head, tail, and follow logs</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-500 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">head, tail -f</code>
+<span class="text-slate-600 text-[10px]">10m</span>
+</div>
+</a>
+<!-- Lesson 11 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-11">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">11</span>
+<span class="text-slate-400 group-hover:text-slate-200 truncate">11. Search patterns with grep</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-500 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">grep -rn</code>
+<span class="text-slate-600 text-[10px]">15m</span>
+</div>
+</a>
+<!-- Lesson 12 -->
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded hover:bg-[#191b23] transition-colors group" href="#lesson-12">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-4 h-4 rounded-full border border-[#3a4150] flex items-center justify-center text-slate-500 text-[9px]">12</span>
+<span class="text-slate-400 group-hover:text-slate-200 truncate">12. Pipe &amp; stream redirection</span>
+</div>
+<div class="flex items-center space-x-1.5 flex-none ml-2">
+<code class="text-[10px] text-slate-500 bg-[#151820] px-1.5 py-0.5 rounded border border-[#262a32]">| &gt; &gt;&gt;</code>
+<span class="text-slate-600 text-[10px]">18m</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Right: Status, Controls & Profile -->
+<div class="flex items-center space-x-2.5 flex-none">
+<div class="flex items-center space-x-1.5 px-2.5 py-1 rounded bg-[#10131a] border border-[#262a32] text-xs font-mono text-slate-300">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green glow-dot"></span>
+</span>
+<span class="text-brand-green font-semibold text-[11px]">SANDBOX:</span>
+<span class="text-slate-300 text-[11px]">Ready</span>
+</div>
+<button class="p-1.5 rounded bg-[#151820] hover:bg-[#191b23] border border-[#262a32] text-slate-400 hover:text-white transition-colors" title="Reload Sandbox Environment" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<button class="p-1.5 rounded bg-[#151820] hover:bg-[#191b23] border border-[#262a32] text-slate-400 hover:text-white transition-colors" id="header-fullscreen-btn" title="Toggle Fullscreen" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="w-6 h-6 rounded bg-slate-800 border border-brand-green/40 flex items-center justify-center text-[10px] font-mono font-bold text-white shadow-sm">
+      OP
+    </div>
+</div>
+</header>
+<!-- END: CompactWorkspaceHeader -->
+<!-- BEGIN: WorkspaceLayout -->
+<div class="flex-1 flex overflow-hidden relative">
+<!-- BEGIN: SlimIconRail -->
+<aside class="w-12 flex-none bg-[#090c12] border-r border-[#262a32] flex flex-col items-center py-3 space-y-3 z-20 select-none">
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-brand-green hover:bg-[#151820] transition-colors relative group" id="rail-drawer-btn" title="Curriculum Drawer (View All Lessons)" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#151820] transition-colors" title="Module Matrix" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<!-- Active Terminal Practice Icon -->
+<button class="w-8 h-8 rounded bg-[#151820] text-brand-green border border-brand-green/40 flex items-center justify-center shadow-sm relative group" title="Active Practice: Lesson 05" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute -right-0.5 -top-0.5 w-2 h-2 rounded-full bg-brand-green glow-dot"></span>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#151820] transition-colors" title="Documentation &amp; Manuals" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#151820] transition-colors" title="Sandboxed File Browser" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="flex-1"></div>
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#151820] transition-colors" title="Keyboard Shortcuts" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#151820] transition-colors" title="Preferences &amp; Keymap" type="button">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</aside>
+<!-- END: SlimIconRail -->
+<!-- BEGIN: Collapsible Lesson Outline Drawer -->
+<div class="hidden absolute left-12 top-0 bottom-0 w-80 bg-[#0d1017] border-r border-[#262a32] z-30 shadow-2xl flex flex-col transition-all duration-200" id="lesson-outline-drawer">
+<div class="h-11 px-3.5 border-b border-[#262a32] flex items-center justify-between bg-[#10131a] flex-none">
+<div class="flex items-center space-x-2">
+<svg class="w-3.5 h-3.5 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-mono text-xs font-bold text-white tracking-wide">Course Outline</span>
+</div>
+<button class="w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#191b23] transition-colors" id="close-drawer-btn" title="Close outline" type="button">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<div class="p-2.5 border-b border-[#1f232b] bg-[#0c0f16]">
+<div class="flex items-center justify-between text-[11px] font-mono mb-1.5">
+<span class="text-slate-400">Progress: 4 of 12 Lessons</span>
+<span class="text-brand-green font-bold">33%</span>
+</div>
+<div class="w-full bg-[#191b23] h-1.5 rounded-full overflow-hidden">
+<div class="bg-brand-green h-full rounded-full" style="width: 33%"></div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-2 space-y-3 font-mono text-xs">
+<!-- Chapter 1 -->
+<div>
+<div class="px-2 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 01: Basics</span>
+<span class="text-brand-green text-[10px]">Completed</span>
+</div>
+<div class="space-y-0.5 mt-1">
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-1">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-brand-green text-xs font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">01. Print directory</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">pwd</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-2">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-brand-green text-xs font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">02. List files</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">ls</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-3">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-brand-green text-xs font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">03. Change directory</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">cd</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-4">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-brand-green text-xs font-bold">✓</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">04. Understand paths</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">.. / ~</code>
+</a>
+</div>
+</div>
+<!-- Chapter 2 -->
+<div class="pt-2 border-t border-[#1f232b]">
+<div class="px-2 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 02: Directories</span>
+<span class="text-brand-green text-[10px]">In Progress</span>
+</div>
+<div class="space-y-0.5 mt-1">
+<a class="flex items-center justify-between p-2 rounded bg-brand-green/10 border border-brand-green/40 group" href="#lesson-5">
+<div class="flex items-center space-x-2 truncate">
+<span class="w-2 h-2 rounded-full bg-brand-green glow-dot"></span>
+<span class="text-brand-green font-semibold truncate text-[11px]">05. Create dirs &amp; files</span>
+</div>
+<code class="text-[10px] text-brand-green bg-brand-green/20 px-1 py-0.5 rounded">mkdir, touch</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-6">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">06. Copy &amp; move files</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">cp, mv</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-7">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">07. Remove files</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">rm</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group" href="#lesson-8">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-300 group-hover:text-white truncate text-[11px]">08. Wildcards &amp; globs</span>
+</div>
+<code class="text-[10px] text-slate-500 bg-[#12161f] px-1 py-0.5 rounded">* ?</code>
+</a>
+</div>
+</div>
+<!-- Chapter 3 -->
+<div class="pt-2 border-t border-[#1f232b]">
+<div class="px-2 py-1 text-[10px] font-bold text-slate-500 uppercase tracking-wider flex items-center justify-between">
+<span>Chapter 03: Read &amp; Search</span>
+<span class="text-slate-600 text-[10px]">Locked</span>
+</div>
+<div class="space-y-0.5 mt-1">
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group opacity-75" href="#lesson-9">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-400 group-hover:text-white truncate text-[11px]">09. Inspect file contents</span>
+</div>
+<code class="text-[10px] text-slate-600 bg-[#12161f] px-1 py-0.5 rounded">cat, less</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group opacity-75" href="#lesson-10">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-400 group-hover:text-white truncate text-[11px]">10. Head, tail, logs</span>
+</div>
+<code class="text-[10px] text-slate-600 bg-[#12161f] px-1 py-0.5 rounded">tail -f</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group opacity-75" href="#lesson-11">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-400 group-hover:text-white truncate text-[11px]">11. Search with grep</span>
+</div>
+<code class="text-[10px] text-slate-600 bg-[#12161f] px-1 py-0.5 rounded">grep</code>
+</a>
+<a class="flex items-center justify-between p-2 rounded hover:bg-[#161a23] transition-colors group opacity-75" href="#lesson-12">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-600 text-xs">○</span>
+<span class="text-slate-400 group-hover:text-white truncate text-[11px]">12. Pipes &amp; redirects</span>
+</div>
+<code class="text-[10px] text-slate-600 bg-[#12161f] px-1 py-0.5 rounded">| &gt;</code>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- END: Collapsible Lesson Outline Drawer -->
+<!-- BEGIN: LeftLessonPane -->
+<div class="w-1/2 flex flex-col bg-[#0e121a] border-r border-[#262a32] overflow-hidden select-text" id="lesson-instructions-pane">
+<!-- Scrollable Lesson Content -->
+<div class="flex-1 overflow-y-auto p-5 space-y-5">
+<!-- Top Badges Row -->
+<div class="flex items-center space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold tracking-wider uppercase bg-[#151820] text-brand-green border border-brand-green/30">
+          LESSON 05
+        </span>
+<span class="text-slate-600 text-xs">•</span>
+<span class="text-slate-400 font-mono text-[11px] uppercase tracking-wider font-semibold">
+          SHELL 101
+        </span>
+<span class="text-slate-600 text-xs">•</span>
+<span class="text-slate-500 font-mono text-[11px]">
+          Est. 10 mins
+        </span>
+</div>
+<!-- Heading & Concise Overview -->
+<div>
+<h1 class="text-xl font-display font-bold text-white tracking-tight flex items-center gap-2">
+<span>Create directories and files</span>
+<span class="text-brand-green font-mono text-sm font-semibold">(mkdir, touch)</span>
+</h1>
+<p class="text-xs text-slate-400 font-sans mt-2 leading-relaxed">
+          In everyday shell workflows, creating directory trees and initializing placeholder or config files is essential. You'll use <code class="text-brand-green font-mono bg-[#191b23] px-1.5 py-0.5 rounded text-[11px]">mkdir</code> to create folders and <code class="text-brand-green font-mono bg-[#191b23] px-1.5 py-0.5 rounded text-[11px]">touch</code> to create empty files safely.
+        </p>
+</div>
+<!-- Command Syntax Card -->
+<div class="rounded-lg bg-[#11151e] border border-[#262a32] overflow-hidden">
+<div class="px-3.5 py-2 border-b border-[#262a32] bg-[#0c0f16] flex items-center justify-between">
+<span class="font-mono text-[11px] font-semibold text-slate-300 flex items-center gap-1.5">
+<span class="text-brand-cyan">{}</span> Command Syntax
+          </span>
+<span class="font-mono text-[10px] text-slate-400 bg-[#191b23] px-1.5 py-0.2 rounded border border-[#262a32]">
+            POSIX
+          </span>
+</div>
+<div class="p-3 space-y-2.5 font-mono text-xs">
+<div class="flex items-center justify-between text-slate-300 bg-[#080b10] px-2.5 py-1.5 rounded border border-[#1f232b]">
+<span><span class="text-brand-green font-semibold">mkdir</span> <span class="text-slate-500">[OPTIONS]</span> DIRECTORY...</span>
+<button class="text-slate-500 hover:text-brand-green text-[10px] font-mono transition-colors" onclick="navigator.clipboard.writeText('mkdir practice'); this.innerText='✓'; setTimeout(()=&gt;this.innerText='Copy',1200);">Copy</button>
+</div>
+<div class="flex items-center justify-between text-slate-300 bg-[#080b10] px-2.5 py-1.5 rounded border border-[#1f232b]">
+<span><span class="text-brand-green font-semibold">touch</span> <span class="text-slate-500">[OPTIONS]</span> FILE...</span>
+<button class="text-slate-500 hover:text-brand-green text-[10px] font-mono transition-colors" onclick="navigator.clipboard.writeText('touch practice/notes.txt'); this.innerText='✓'; setTimeout(()=&gt;this.innerText='Copy',1200);">Copy</button>
+</div>
+<div class="pt-1 flex flex-wrap gap-1.5 text-[11px] text-slate-400">
+<span class="px-1.5 py-0.5 rounded bg-[#191b23] border border-[#262a32]"><code class="text-brand-cyan">-p</code> Create parent directories as needed</span>
+<span class="px-1.5 py-0.5 rounded bg-[#191b23] border border-[#262a32]"><code class="text-brand-cyan">touch</code> Create empty file or update timestamp</span>
+</div>
+</div>
+</div>
+<!-- Practice Objectives Card -->
+<div class="space-y-2.5">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-mono font-bold tracking-wider uppercase text-slate-300 flex items-center gap-1.5">
+<span>☑ MISSION OBJECTIVES</span>
+</h3>
+<span class="text-[11px] font-mono font-bold text-brand-green px-2 py-0.5 rounded bg-brand-green/10 border border-brand-green/30">
+            2/3 Complete
+          </span>
+</div>
+<div class="space-y-2">
+<!-- Objective 1 (Passed) -->
+<div class="p-2.5 rounded-lg bg-[#0c1410] border border-brand-green/30 flex items-start space-x-3 text-xs font-mono">
+<span class="mt-0.5 w-4 h-4 rounded-full bg-brand-green text-black flex items-center justify-center font-bold text-[10px] flex-none">
+              ✓
+            </span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-slate-300 font-semibold line-through">Create directory named practice</span>
+<span class="text-[10px] text-brand-green bg-brand-green/10 px-1.5 py-0.2 rounded border border-brand-green/20">+50 XP</span>
+</div>
+<p class="text-[11px] text-brand-green/80 mt-0.5">Task 1 · Verified from session history</p>
+</div>
+</div>
+<!-- Objective 2 (Passed) -->
+<div class="p-2.5 rounded-lg bg-[#0c1410] border border-brand-green/30 flex items-start space-x-3 text-xs font-mono">
+<span class="mt-0.5 w-4 h-4 rounded-full bg-brand-green text-black flex items-center justify-center font-bold text-[10px] flex-none">
+              ✓
+            </span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-slate-300 font-semibold line-through">Create notes.txt inside practice</span>
+<span class="text-[10px] text-brand-green bg-brand-green/10 px-1.5 py-0.2 rounded border border-brand-green/20">+100 XP</span>
+</div>
+<p class="text-[11px] text-brand-green/80 mt-0.5">Task 2 · File detected at practice/notes.txt</p>
+</div>
+</div>
+<!-- Objective 3 (Active / In-progress) -->
+<div class="p-2.5 rounded-lg bg-[#141a24] border border-brand-cyan/50 flex items-start space-x-3 text-xs font-mono shadow-sm">
+<span class="mt-0.5 w-4 h-4 rounded-full bg-brand-cyan/20 border border-brand-cyan text-brand-cyan flex items-center justify-center font-bold text-[10px] flex-none animate-pulse">
+              🎯
+            </span>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="text-white font-semibold">Write <code class="text-brand-cyan font-mono bg-black/40 px-1 rounded">"Hello BashLab"</code> into notes.txt</span>
+<span class="text-[10px] text-brand-cyan bg-brand-cyan/20 px-1.5 py-0.2 rounded border border-brand-cyan/30">+150 XP</span>
+</div>
+<p class="text-[11px] text-brand-cyan/90 mt-0.5">Pipe text via echo "Hello BashLab" &gt; practice/notes.txt</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Collapsible Hint Box -->
+<details class="bg-[#16140e] border border-brand-amber/30 rounded-lg p-3 group cursor-pointer">
+<summary class="flex items-center justify-between text-xs font-mono font-semibold text-brand-amber list-none select-none">
+<span class="flex items-center gap-1.5">
+<span>💡</span> Need a hint? Writing text directly into a file
+          </span>
+<span class="text-brand-amber text-xs group-open:rotate-180 transition-transform">▼</span>
+</summary>
+<div class="mt-2.5 pt-2.5 border-t border-brand-amber/20 text-xs text-slate-300 font-sans leading-relaxed space-y-1.5">
+<p>Redirect output using the <code class="text-brand-amber font-mono bg-black/40 px-1 rounded">&gt;</code> operator with <code class="text-slate-200 font-mono">echo</code>:</p>
+<div class="bg-black/50 p-2 rounded border border-brand-amber/20 font-mono text-brand-amber text-xs">
+            echo "Hello BashLab" &gt; practice/notes.txt
+          </div>
+<p class="text-slate-400 text-[11px]">The single <code class="font-mono text-slate-300">&gt;</code> overwrites existing file content; double <code class="font-mono text-slate-300">&gt;&gt;</code> appends to the file.</p>
+</div>
+</details>
+</div>
+<!-- Bottom Sticky Action Bar -->
+<div class="h-12 border-t border-[#262a32] bg-[#0c0f16] px-4 flex items-center justify-between flex-none select-none text-xs font-mono">
+<div class="flex items-center gap-1.5 text-slate-400 text-[11px]">
+<span class="w-2 h-2 rounded-full bg-brand-cyan animate-ping"></span>
+<span>Awaiting validation for Objective 3</span>
+</div>
+<button class="px-3.5 py-1.5 rounded bg-brand-green hover:bg-[#00e65c] active:scale-[0.98] text-[#0a0d14] font-mono font-bold text-xs tracking-wide transition-all shadow-md flex items-center gap-1.5" id="verify-solution-btn" type="button">
+<span>✔</span>
+<span>Check Solution</span>
+<span class="text-[10px] text-black/60 bg-black/10 px-1 rounded font-normal">Ctrl+Enter</span>
+</button>
+</div>
+</div>
+<!-- END: LeftLessonPane -->
+<!-- BEGIN: WorkspaceDivider -->
+<div class="w-1 bg-[#262a32] hover:bg-brand-green/60 active:bg-brand-green cursor-col-resize flex-none z-10 transition-colors"></div>
+<!-- END: WorkspaceDivider -->
+<!-- BEGIN: RightTerminalPane -->
+<div class="flex-1 flex flex-col bg-[#080b10] overflow-hidden select-text" id="terminal-container">
+<!-- Terminal macOS-style Header Bar -->
+<div class="h-9 bg-[#0d1017] border-b border-[#262a32] px-3 flex items-center justify-between flex-none select-none font-mono text-xs">
+<div class="flex items-center space-x-2.5">
+<!-- Traffic light dots -->
+<div class="flex items-center space-x-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]"></span>
+</div>
+<span class="text-slate-400 text-[11px] font-medium hidden sm:inline ml-1">
+          &gt;_ learner@bashlab: ~ (bash 5.2)
+        </span>
+</div>
+<div class="flex items-center space-x-2 text-[11px]">
+<button class="px-2 py-0.5 rounded text-slate-400 hover:text-white hover:bg-[#191b23] transition-colors border border-transparent hover:border-[#262a32]" id="term-clear-btn" title="Clear terminal (Ctrl+L)">
+          ≡ Clear
+        </button>
+<button class="px-2 py-0.5 rounded text-slate-400 hover:text-white hover:bg-[#191b23] transition-colors border border-transparent hover:border-[#262a32]" id="term-copy-btn" title="Copy output">
+          ⎘ Copy
+        </button>
+</div>
+</div>
+<!-- Terminal Screen Display -->
+<div class="flex-1 p-4 font-mono text-[13px] leading-relaxed text-slate-200 overflow-y-auto bg-[#080b10]" id="terminal-body-screen">
+<!-- System Info Banner -->
+<div class="text-slate-500 mb-3 select-none text-xs">
+<p>Linux bashlab-vessel 6.6.14-opt #1 SMP PREEMPT_DYNAMIC x86_64</p>
+<p class="text-slate-600">────────────────────────────────────────────────────────────</p>
+</div>
+<!-- Transcript Lines -->
+<div class="space-y-1 text-xs">
+<!-- Command 1: pwd -->
+<div>
+<div class="flex items-center space-x-1">
+<span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+<span class="text-white ml-1.5">pwd</span>
+</div>
+<div class="text-slate-400 ml-4">/home/learner</div>
+</div>
+<!-- Command 2: mkdir practice -->
+<div>
+<div class="flex items-center space-x-1">
+<span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+<span class="text-white ml-1.5">mkdir practice</span>
+</div>
+</div>
+<!-- Command 3: ls -la -->
+<div>
+<div class="flex items-center space-x-1">
+<span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+<span class="text-white ml-1.5">ls -la</span>
+</div>
+<div class="text-slate-400 ml-4 leading-tight py-0.5">
+<div>total 12</div>
+<div>drwxr-xr-x 3 learner learner 4096 Oct 24 14:02 .</div>
+<div>drwxr-xr-x 3 root    root    4096 Oct 24 14:00 ..</div>
+<div>drwxr-xr-x 2 learner learner 4096 Oct 24 14:02 <span class="text-brand-cyan font-semibold">practice</span></div>
+</div>
+</div>
+<!-- Command 4: touch practice/notes.txt -->
+<div>
+<div class="flex items-center space-x-1">
+<span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+<span class="text-white ml-1.5">touch practice/notes.txt</span>
+</div>
+</div>
+<!-- Command 5: Active user prompt -->
+<div class="flex items-center space-x-1 pt-1">
+<span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+<input autofocus="" class="bg-transparent border-none outline-none focus:outline-none text-white font-mono text-xs p-0 ml-1.5 w-80 ring-0 focus:ring-0" id="real-terminal-input" placeholder="echo &quot;Hello BashLab&quot; &gt; practice/notes.txt" spellcheck="false" type="text">
+<span class="terminal-cursor text-brand-green text-sm pointer-events-none -ml-28">▋</span>
+</div>
+</div>
+</div>
+<!-- Terminal Bottom Quick Bar -->
+<div class="h-8 bg-[#0b0e14] border-t border-[#262a32] px-3 flex items-center justify-between text-[11px] font-mono text-slate-500 select-none">
+<div class="flex items-center space-x-2 truncate">
+<span class="text-slate-400 font-semibold">QUICK:</span>
+<button class="px-1.5 py-0.5 rounded bg-[#151820] hover:bg-[#1d212b] text-slate-300 border border-[#262a32] text-[10px] transition-colors" onclick="const inp=document.getElementById('real-terminal-input'); if(inp){inp.value='pwd'; inp.focus();}">pwd</button>
+<button class="px-1.5 py-0.5 rounded bg-[#151820] hover:bg-[#1d212b] text-slate-300 border border-[#262a32] text-[10px] transition-colors" onclick="const inp=document.getElementById('real-terminal-input'); if(inp){inp.value='ls -la'; inp.focus();}">ls -la</button>
+<button class="px-1.5 py-0.5 rounded bg-[#151820] hover:bg-[#1d212b] text-slate-300 border border-[#262a32] text-[10px] transition-colors" onclick="const inp=document.getElementById('real-terminal-input'); if(inp){inp.value='cat practice/notes.txt'; inp.focus();}">cat practice/notes.txt</button>
+<button class="px-1.5 py-0.5 rounded bg-[#151820] hover:bg-brand-green/20 text-brand-green border border-brand-green/30 text-[10px] transition-colors" onclick="const inp=document.getElementById('real-terminal-input'); if(inp){inp.value='echo &quot;Hello BashLab&quot; &gt; practice/notes.txt'; inp.focus();}">solve obj #3</button>
+</div>
+<div class="flex items-center space-x-1.5 text-slate-400 text-[10px]">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
+<span>tty/1</span>
+<span class="text-slate-600">•</span>
+<span>UTF-8</span>
+</div>
+</div>
+</div>
+<!-- END: RightTerminalPane -->
+</div>
+<!-- END: WorkspaceLayout -->
+<!-- BEGIN: InteractiveWorkspaceScripts -->
+<script data-purpose="workspace-interactions">
+    // Lesson Switcher Dropdown Toggle
+    const switcherBtn = document.getElementById('lesson-switcher-btn');
+    const switcherMenu = document.getElementById('lesson-switcher-menu');
+    const switcherCaret = document.getElementById('switcher-caret');
+
+    function toggleSwitcher(e) {
+      if (e) e.stopPropagation();
+      const isHidden = switcherMenu.classList.contains('hidden');
+      if (isHidden) {
+        switcherMenu.classList.remove('hidden');
+        switcherCaret?.classList.add('rotate-180');
+        switcherBtn?.setAttribute('aria-expanded', 'true');
+      } else {
+        switcherMenu.classList.add('hidden');
+        switcherCaret?.classList.remove('rotate-180');
+        switcherBtn?.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    switcherBtn?.addEventListener('click', toggleSwitcher);
+
+    // Curriculum Outline Drawer Toggle
+    const railDrawerBtn = document.getElementById('rail-drawer-btn');
+    const closeDrawerBtn = document.getElementById('close-drawer-btn');
+    const drawer = document.getElementById('lesson-outline-drawer');
+
+    function toggleDrawer(e) {
+      if (e) e.stopPropagation();
+      drawer?.classList.toggle('hidden');
+    }
+
+    railDrawerBtn?.addEventListener('click', toggleDrawer);
+    closeDrawerBtn?.addEventListener('click', () => drawer?.classList.add('hidden'));
+
+    // Global click listener to close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (switcherMenu && !switcherMenu.contains(e.target) && !switcherBtn?.contains(e.target)) {
+        switcherMenu.classList.add('hidden');
+        switcherCaret?.classList.remove('rotate-180');
+        switcherBtn?.setAttribute('aria-expanded', 'false');
+      }
+      if (drawer && !drawer.contains(e.target) && !railDrawerBtn?.contains(e.target)) {
+        drawer.classList.add('hidden');
+      }
+    });
+
+    // Clear Terminal Handler
+    const clearBtn = document.getElementById('term-clear-btn');
+    clearBtn?.addEventListener('click', () => {
+      const termScreen = document.getElementById('terminal-body-screen');
+      if (termScreen) {
+        termScreen.innerHTML = `
+          <div class="text-slate-500 mb-3 select-none text-xs">
+            <p>Sandbox terminal cleared. Working directory: <span class="text-brand-cyan">/home/learner</span></p>
+          </div>
+          <div class="flex items-center space-x-1 pt-1 text-xs">
+            <span class="text-brand-green font-bold">learner@bashlab</span><span class="text-slate-500">:</span><span class="text-brand-cyan">~</span><span class="text-slate-400">$</span>
+            <input type="text" id="real-terminal-input" class="bg-transparent border-none outline-none focus:outline-none text-white font-mono text-xs p-0 ml-1.5 w-80 ring-0 focus:ring-0" autofocus spellcheck="false" placeholder='echo "Hello BashLab" > practice/notes.txt'>
+            <span class="terminal-cursor text-brand-green text-sm pointer-events-none -ml-28">▋</span>
+          </div>
+        `;
+      }
+    });
+
+    // Copy Terminal Output
+    const copyBtn = document.getElementById('term-copy-btn');
+    copyBtn?.addEventListener('click', () => {
+      const termScreen = document.getElementById('terminal-body-screen');
+      if (termScreen) {
+        navigator.clipboard.writeText(termScreen.innerText);
+        const originalText = copyBtn.innerText;
+        copyBtn.innerText = '✓ Copied';
+        setTimeout(() => copyBtn.innerText = originalText, 1200);
+      }
+    });
+
+    // Verify / Check Solution Handler
+    const verifyBtn = document.getElementById('verify-solution-btn');
+    verifyBtn?.addEventListener('click', () => {
+      verifyBtn.innerHTML = `
+        <svg class="w-3.5 h-3.5 text-black animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Checking...</span>
+      `;
+      setTimeout(() => {
+        verifyBtn.innerHTML = `<span>✓ Completed (3/3)</span>`;
+        verifyBtn.className = "px-3.5 py-1.5 rounded bg-brand-cyan text-black font-mono font-bold text-xs tracking-wide shadow-md flex items-center gap-1.5";
+      }, 700);
+    });
+  </script>
+<!-- END: InteractiveWorkspaceScripts -->
+</body></html>

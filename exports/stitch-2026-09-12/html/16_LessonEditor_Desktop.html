@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#93000a", "on-secondary-fixed": "#001f24", "tertiary-container": "#ffd7aa", "inverse-surface": "#e1e2ec", "surface-variant": "#32353d", "surface-container-low": "#191b23", "on-secondary": "#00363d", "on-tertiary-container": "#895600", "primary-fixed-dim": "#00e55b", "tertiary-fixed": "#ffddb8", "on-secondary-fixed-variant": "#004f58", "secondary": "#bdf4ff", "on-primary-fixed-variant": "#00531b", "outline": "#849581", "inverse-primary": "#006e27", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3038", "surface-container-lowest": "#0b0e15", "outline-variant": "#3b4b3a", "on-primary": "#003911", "on-tertiary": "#472a00", "on-tertiary-fixed-variant": "#653e00", "on-surface-variant": "#b9ccb5", "error": "ffb4ab", "secondary-fixed": "#9cf0ff", "on-tertiary-fixed": "#2a1700", "on-surface": "#e1e2ec", "surface": "#10131a", "on-primary-container": "#007128", "on-primary-fixed": "#002107", "surface-dim": "#10131a", "secondary-fixed-dim": "#00daf3", "background": "#10131a", "primary-fixed": "#6bff83", "surface-container": "#1d1f27", "primary-container": "#00ff66", "tertiary": "#fff9f6", "on-background": "#e1e2ec", "tertiary-fixed-dim": "#ffb95f", "on-secondary-container": "#00616d", "secondary-container": "#00e3fd", "surface-tint": "#00e55b", "surface-container-high": "#272a32", "surface-bright": "#363941", "primary": "#edffe8", "surface-container-highest": "#32353d", "on-error": "#690005" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1rem", "space-xs": "0.25rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "space-xl": "2.5rem", "gutter-desktop": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-sm": [ "Space Grotesk" ], "headline-md": [ "Space Grotesk" ], "headline-xl": [ "Space Grotesk" ], "code-lg": [ "JetBrains Mono" ], "headline-xl-mobile": [ "Space Grotesk" ], "code-md": [ "JetBrains Mono" ], "body-md": [ "Inter" ], "label-md": [ "JetBrains Mono" ], "headline-lg": [ "Space Grotesk" ], "body-lg": [ "Inter" ], "label-sm": [ "JetBrains Mono" ], "headline-lg-mobile": [ "Space Grotesk" ], "body-sm": [ "Inter" ] }, "fontSize": { "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-xl": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "code-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "500" } ], "headline-xl-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "code-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "headline-lg-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm group" data-path="content" href="#"><span class="font-code-lg text-code-lg font-bold text-primary-container group-hover:drop-shadow-[0_0_8px_rgba(0,255,102,0.4)] transition-all">&gt;_</span><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">BashLab</span><span class="px-space-xs py-[2px] rounded bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider">ADMIN</span></a><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary-container font-code-md text-code-md"><a aria-current="page" class="transition-colors text-primary-container font-code-md text-code-md" data-path="content" href="#">Content</a><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="users" href="#">Users</a><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="activity" href="#">Activity</a></nav></div><div class="flex items-center gap-space-lg"><a class="font-code-md text-code-md text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-space-xs" data-path="learning" href="#">← Back to learning</a><div class="flex items-center gap-space-sm pl-space-sm"><div class="text-right hidden sm:block"><div class="font-code-md text-code-md text-on-surface leading-tight">Alex Morgan</div><div class="font-label-sm text-label-sm text-outline leading-tight uppercase">Admin</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_6px_rgba(0,255,102,0.2)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-14 flex-1 bg-background"><div class="flex flex-col w-full">
+<div class="w-full px-margin md:px-margin-desktop py-space-lg flex flex-col gap-space-lg max-w-[1600px] mx-auto">
+<!-- Top breadcrumb & Status Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<a class="flex items-center gap-space-xs font-code-md text-code-md text-secondary hover:text-primary-container transition-colors w-fit group" data-path="content" href="#">
+<span class="material-symbols-outlined text-[16px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
+<span>Back to content</span>
+</a>
+<div class="flex items-center gap-space-md flex-wrap pt-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Edit Lesson: Create directories and files</h1>
+<span class="bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm px-space-sm py-[3px] rounded tracking-wider uppercase">Lesson 5 • Chapter 2 • Shell 101</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md self-start md:self-auto">
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded shadow-sm">
+<span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_6px_rgba(0,255,102,0.6)]"></span>
+<span class="font-label-md text-label-md text-primary-container uppercase font-semibold">Published</span>
+</div>
+<div class="hidden lg:flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-outline">STATUS SYNC</span>
+<span class="font-code-md text-code-md text-on-surface-variant" id="syncStatus">Clean state (14:42 UTC)</span>
+</div>
+</div>
+</div>
+<!-- Top Row: Compact Form Controls & Meta Strip -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-space-md items-end">
+<!-- Lesson Title -->
+<div class="md:col-span-5 flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Lesson Title</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest text-on-surface font-headline-sm text-headline-sm px-space-md py-space-xs rounded focus:outline-none focus:ring-1 focus:ring-primary-container shadow-inner transition-all" id="lessonTitleInput" type="text" value="Create directories and files"/>
+</div>
+</div>
+<!-- Chapter Selector -->
+<div class="md:col-span-4 flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Chapter</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest text-on-surface font-code-md text-code-md px-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none shadow-inner cursor-pointer">
+<option value="ch1">Chapter 01: Linux Environment Primer</option>
+<option selected="" value="ch2">Chapter 02: Work with directories and files</option>
+<option value="ch3">Chapter 03: Permissions and Access Control</option>
+<option value="ch4">Chapter 04: Standard Streams &amp; Piping</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Position Stepper -->
+<div class="md:col-span-3 flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sequence Index</label>
+<div class="flex items-center bg-surface-container-lowest rounded px-space-sm py-[7px] justify-between shadow-inner">
+<button class="w-6 h-6 flex items-center justify-center rounded bg-surface-container-high hover:bg-surface-bright text-secondary transition-colors" title="Move earlier" type="button">
+<span class="material-symbols-outlined text-[14px]">remove</span>
+</button>
+<span class="font-code-md text-code-md text-on-surface px-space-sm">Lesson 5 of 12</span>
+<button class="w-6 h-6 flex items-center justify-center rounded bg-surface-container-high hover:bg-surface-bright text-secondary transition-colors" title="Move later" type="button">
+<span class="material-symbols-outlined text-[14px]">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Expandable Details disclosure -->
+<div class="bg-surface-container-low rounded p-space-sm">
+<button class="flex items-center justify-between w-full font-label-md text-label-md text-secondary hover:text-primary-container transition-colors py-space-xs text-left" id="disclosureToggle" type="button">
+<span class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[16px] transition-transform" id="disclosureIcon">chevron_right</span>
+<span>Metadata &amp; Route Slug Config</span>
+</span>
+<span class="font-code-md text-code-md text-outline">/courses/shell-101/ch-02/<span class="text-secondary" id="slugPreview">create-directories-and-files</span></span>
+</button>
+<div class="hidden pt-space-sm mt-space-xs flex flex-col md:flex-row gap-space-md items-center" id="disclosureContent">
+<div class="flex-1 w-full flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Derived Initial Slug</label>
+<div class="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-space-xs rounded shadow-inner">
+<span class="text-outline font-code-md text-code-md">slug:</span>
+<input class="w-full bg-transparent text-secondary font-code-md text-code-md focus:outline-none" id="slugInput" type="text" value="create-directories-and-files"/>
+</div>
+</div>
+<div class="flex-1 w-full flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Publication Preset</label>
+<div class="flex items-center gap-space-md bg-surface-container-lowest px-space-md py-[7px] rounded text-on-surface font-code-md text-code-md shadow-inner">
+<label class="flex items-center gap-space-xs cursor-pointer">
+<input checked="" class="accent-primary-container" name="visibility" type="radio" value="published"/>
+<span>Published</span>
+</label>
+<label class="flex items-center gap-space-xs cursor-pointer text-on-surface-variant hover:text-on-surface">
+<input class="accent-primary-container" name="visibility" type="radio" value="draft"/>
+<span>Draft</span>
+</label>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Workspace: Markdown Editor & Exercise Setup -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg items-start">
+<!-- Primary Markdown Area (XL: 8 cols) -->
+<section class="xl:col-span-8 flex flex-col bg-surface-container rounded-xl overflow-hidden shadow-lg">
+<!-- Editor Header & Toolbar -->
+<div class="bg-surface-container-high px-space-md py-space-sm flex flex-wrap items-center justify-between gap-space-md">
+<!-- Write / Preview Mode Switcher -->
+<div class="flex items-center bg-surface-container-lowest p-[2px] rounded">
+<button class="px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface bg-surface-container font-semibold transition-all" id="writeTabBtn" type="button">Write</button>
+<button class="px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-all" id="previewTabBtn" type="button">Preview</button>
+</div>
+<!-- Format Toolbar -->
+<div class="flex items-center gap-space-xs bg-surface-container-low px-space-xs py-[2px] rounded" id="formatToolbar">
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="insertSyntax('**', '**')" title="Bold" type="button">
+<span class="material-symbols-outlined text-[18px]">format_bold</span>
+</button>
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="insertSyntax('*', '*')" title="Italic" type="button">
+<span class="material-symbols-outlined text-[18px]">format_italic</span>
+</button>
+<div class="w-[1px] h-4 bg-outline-variant mx-1"></div>
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors font-code-md text-code-md font-bold" onclick="insertSyntax('`', '`')" title="Inline Code" type="button">
+              &lt;/&gt;
+            </button>
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="insertSyntax('[', '](url)')" title="Insert Link" type="button">
+<span class="material-symbols-outlined text-[18px]">link</span>
+</button>
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="insertHeading()" title="Header" type="button">
+<span class="material-symbols-outlined text-[18px]">title</span>
+</button>
+<button class="p-space-xs rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" onclick="insertSyntax('- ', '')" title="Bullet List" type="button">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+</button>
+</div>
+<!-- Editor info tag -->
+<div class="hidden sm:flex items-center gap-space-xs font-label-sm text-label-sm text-outline uppercase tracking-wider">
+<span class="material-symbols-outlined text-[14px]">markdown</span>
+<span>GFM Spec</span>
+</div>
+</div>
+<!-- Markdown Write Area -->
+<div class="relative bg-surface-container-lowest p-space-md min-h-[460px] flex flex-col" id="writePane">
+<textarea class="w-full flex-1 bg-transparent text-on-surface font-code-md text-code-md leading-relaxed resize-none focus:outline-none min-h-[460px] placeholder:text-outline selection:bg-primary-container selection:text-on-primary-container" id="markdownEditor" spellcheck="false"># Create directories and files
+
+In Linux, everything is part of a single tree. To create new directories, use `mkdir`. To create empty files or update timestamps, use `touch`.
+
+### Instructions
+1. Create a directory named `projects` in your home folder.
+2. Navigate into `projects` and create `main.sh`.
+</textarea>
+</div>
+<!-- Clean HTML Preview Pane (Hidden by default) -->
+<div class="hidden bg-surface-container-lowest p-space-xl min-h-[460px] overflow-y-auto" id="previewPane">
+<div class="prose prose-invert max-w-none flex flex-col gap-space-md text-on-surface">
+<!-- Parsed display populated dynamically by JavaScript -->
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight pb-space-xs">Create directories and files</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+              In Linux, everything is part of a single tree. To create new directories, use <code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md font-semibold">mkdir</code>. To create empty files or update timestamps, use <code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md font-semibold">touch</code>.
+            </p>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-normal pt-space-sm">Instructions</h3>
+<ol class="list-decimal pl-space-lg flex flex-col gap-space-xs font-body-md text-body-md text-on-surface-variant">
+<li>Create a directory named <code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md">projects</code> in your home folder.</li>
+<li>Navigate into <code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md">projects</code> and create <code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md">main.sh</code>.</li>
+</ol>
+</div>
+</div>
+<!-- Markdown pane footer indicators -->
+<div class="bg-surface-container-low px-space-md py-space-xs flex items-center justify-between font-label-sm text-label-sm text-outline">
+<div class="flex items-center gap-space-md">
+<span id="wordCount">32 words</span>
+<span>•</span>
+<span id="charCount">218 characters</span>
+</div>
+<span class="font-code-md text-code-md text-outline-variant">UTF-8 • LF</span>
+</div>
+</section>
+<!-- Sidebar: Objectives & Exercise Verification (XL: 4 cols) -->
+<div class="xl:col-span-4 flex flex-col gap-space-lg">
+<!-- Lesson Objectives Section -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[20px]">checklist</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Lesson Objectives</h2>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-secondary px-space-sm py-[2px] rounded" id="objCounter">2 Active</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Tasks required for students to mark this exercise step as fully completed.
+          </p>
+<div class="flex flex-col gap-space-sm" id="objectivesList">
+<!-- Objective 1 -->
+<div class="objective-item group flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded transition-all">
+<div class="pt-space-xs">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest accent-primary-container cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-1 min-w-0">
+<input class="w-full bg-transparent text-on-surface font-code-md text-code-md focus:outline-none placeholder:text-outline selection:bg-primary-container selection:text-on-primary-container" type="text" value="Create directory ~/projects using mkdir"/>
+<span class="font-label-sm text-label-sm text-outline block mt-0.5">ID: OBJ_01 // REQUIRED</span>
+</div>
+<button class="text-outline hover:text-error transition-colors p-space-xs" onclick="removeObjective(this)" title="Remove objective" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+<!-- Objective 2 -->
+<div class="objective-item group flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded transition-all">
+<div class="pt-space-xs">
+<input checked="" class="w-4 h-4 rounded bg-surface-container-lowest accent-primary-container cursor-pointer" type="checkbox"/>
+</div>
+<div class="flex-1 min-w-0">
+<input class="w-full bg-transparent text-on-surface font-code-md text-code-md focus:outline-none placeholder:text-outline selection:bg-primary-container selection:text-on-primary-container" type="text" value="Create empty file ~/projects/main.sh using touch"/>
+<span class="font-label-sm text-label-sm text-outline block mt-0.5">ID: OBJ_02 // REQUIRED</span>
+</div>
+<button class="text-outline hover:text-error transition-colors p-space-xs" onclick="removeObjective(this)" title="Remove objective" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<button class="flex items-center justify-center gap-space-xs w-full py-space-sm rounded bg-surface-container-high hover:bg-surface-bright text-secondary font-code-md text-code-md font-medium transition-colors shadow-sm" id="addObjectiveBtn" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add objective</span>
+</button>
+</section>
+<!-- Exercise Verification Template Selector -->
+<section class="bg-surface-container rounded-xl p-space-md shadow-md flex flex-col gap-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary-container text-[20px]">verified_user</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Exercise Verification</h2>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Verification Template</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest text-on-surface font-code-md text-code-md px-space-md py-space-sm rounded focus:outline-none focus:ring-1 focus:ring-primary-container appearance-none shadow-inner cursor-pointer">
+<option selected="" value="fs_crud">Template: Filesystem Directory &amp; File Creation</option>
+<option value="fs_perms">Template: File Permission &amp; Ownership Validation</option>
+<option value="stdio_pipe">Template: Standard Stream I/O &amp; Pipes</option>
+<option value="env_vars">Template: Shell Environment &amp; Export Vars</option>
+<option value="none">Template: No Verification (Theory Only)</option>
+</select>
+<span class="material-symbols-outlined absolute right-space-sm top-1/2 -translate-y-1/2 text-outline pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[18px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Verification executes standard automated checks against the exercise template upon student submission.
+            </p>
+</div>
+<div class="flex items-center justify-between text-outline font-label-sm text-label-sm pt-space-xs">
+<span>SUITE: <span class="text-on-surface font-code-md text-code-md">FS_TEST_SUITE_V2</span></span>
+<span class="text-primary-container">CONFIGURED</span>
+</div>
+</section>
+</div>
+</div>
+<!-- Actions Footer / Bottom Command Strip -->
+<div class="sticky bottom-0 z-20 w-full bg-surface-container-highest/95 backdrop-blur-md rounded-xl p-space-md shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-space-md mt-space-md">
+<!-- Feedback notice on left -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container animate-pulse"></span>
+<div class="flex flex-col">
+<span class="font-code-md text-code-md text-on-surface" id="noticeText">All changes saved at 14:42 UTC</span>
+<span class="font-label-sm text-label-sm text-outline">Branch: main • Revision #8812</span>
+</div>
+</div>
+<!-- Button group on right -->
+<div class="flex items-center gap-space-md w-full sm:w-auto justify-end">
+<a class="px-space-lg py-space-sm rounded bg-surface-container text-on-surface font-code-md text-code-md hover:bg-surface-bright transition-colors text-center" data-path="content" href="#">
+          Cancel
+        </a>
+<button class="px-space-xl py-space-sm rounded bg-primary-container text-on-primary-container font-code-md text-code-md font-bold uppercase tracking-wider hover:brightness-110 shadow-[0_0_12px_rgba(0,255,102,0.3)] active:translate-y-px transition-all flex items-center justify-center gap-space-xs" id="saveButton" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save changes</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Details disclosure logic
+  const disclosureToggle = document.getElementById('disclosureToggle');
+  const disclosureContent = document.getElementById('disclosureContent');
+  const disclosureIcon = document.getElementById('disclosureIcon');
+
+  disclosureToggle.addEventListener('click', () => {
+    const isHidden = disclosureContent.classList.toggle('hidden');
+    disclosureIcon.style.transform = isHidden ? 'rotate(0deg)' : 'rotate(90deg)';
+  });
+
+  // Slug dynamic preview sync
+  const titleInput = document.getElementById('lessonTitleInput');
+  const slugInput = document.getElementById('slugInput');
+  const slugPreview = document.getElementById('slugPreview');
+
+  titleInput.addEventListener('input', (e) => {
+    markDirty();
+    const generatedSlug = e.target.value
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    slugInput.value = generatedSlug;
+    slugPreview.textContent = generatedSlug || 'untitled';
+  });
+
+  slugInput.addEventListener('input', (e) => {
+    markDirty();
+    slugPreview.textContent = e.target.value || 'untitled';
+  });
+
+  // Editor Tab Toggle (Write vs Preview)
+  const writeTabBtn = document.getElementById('writeTabBtn');
+  const previewTabBtn = document.getElementById('previewTabBtn');
+  const writePane = document.getElementById('writePane');
+  const previewPane = document.getElementById('previewPane');
+  const formatToolbar = document.getElementById('formatToolbar');
+  const markdownEditor = document.getElementById('markdownEditor');
+
+  writeTabBtn.addEventListener('click', () => {
+    writeTabBtn.className = 'px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface bg-surface-container font-semibold transition-all';
+    previewTabBtn.className = 'px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-all';
+    writePane.classList.remove('hidden');
+    previewPane.classList.add('hidden');
+    formatToolbar.classList.remove('opacity-40', 'pointer-events-none');
+  });
+
+  previewTabBtn.addEventListener('click', () => {
+    previewTabBtn.className = 'px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface bg-surface-container font-semibold transition-all';
+    writeTabBtn.className = 'px-space-md py-[4px] rounded font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-all';
+    writePane.classList.add('hidden');
+    previewPane.classList.remove('hidden');
+    formatToolbar.classList.add('opacity-40', 'pointer-events-none');
+    renderPreview();
+  });
+
+  function renderPreview() {
+    const raw = markdownEditor.value;
+    // Simple fast markdown parser for standard instructions
+    let html = raw
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/^### (.*$)/gim, '<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-normal pt-space-sm">$1</h3>')
+      .replace(/^# (.*$)/gim, '<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight pb-space-xs">$1</h1>')
+      .replace(/\*\*(.*?)\*\*/gim, '<strong class="text-on-surface font-semibold">$1</strong>')
+      .replace(/\*(.*?)\*/gim, '<em class="italic text-on-surface">$1</em>')
+      .replace(/`([^`]+)`/gim, '<code class="bg-surface-container-high text-secondary px-space-xs py-[2px] rounded font-code-md text-code-md font-semibold">$1</code>')
+      .replace(/\[(.*?)\]\((.*?)\)/gim, '<a href="$2" class="text-secondary underline hover:text-primary-container" target="_blank">$1</a>')
+      .replace(/\n\n+/g, '</p><p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">');
+
+    previewPane.innerHTML = '<div class="prose prose-invert max-w-none flex flex-col gap-space-md text-on-surface"><p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">' + html + '</p></div>';
+  }
+
+  // Formatting helpers
+  function insertSyntax(prefix, suffix) {
+    const start = markdownEditor.selectionStart;
+    const end = markdownEditor.selectionEnd;
+    const selected = markdownEditor.value.substring(start, end);
+    const replacement = prefix + selected + suffix;
+    markdownEditor.setRangeText(replacement, start, end, 'end');
+    markdownEditor.focus();
+    updateCounts();
+    markDirty();
+  }
+
+  function insertHeading() {
+    const start = markdownEditor.selectionStart;
+    markdownEditor.setRangeText('### ', start, start, 'end');
+    markdownEditor.focus();
+    updateCounts();
+    markDirty();
+  }
+
+  // Word / Char count updater
+  const wordCount = document.getElementById('wordCount');
+  const charCount = document.getElementById('charCount');
+
+  function updateCounts() {
+    const val = markdownEditor.value;
+    const words = val.trim() ? val.trim().split(/\s+/).length : 0;
+    wordCount.textContent = words + ' words';
+    charCount.textContent = val.length + ' characters';
+  }
+
+  markdownEditor.addEventListener('input', () => {
+    updateCounts();
+    markDirty();
+  });
+
+  // Unsaved changes & notification logic
+  const noticeText = document.getElementById('noticeText');
+  const syncStatus = document.getElementById('syncStatus');
+  const saveButton = document.getElementById('saveButton');
+  let isDirty = false;
+
+  function markDirty() {
+    if (!isDirty) {
+      isDirty = true;
+      noticeText.textContent = 'Unsaved changes in editor buffer';
+      noticeText.className = 'font-code-md text-code-md text-tertiary-fixed-dim font-medium';
+      syncStatus.textContent = 'Unsaved changes';
+      syncStatus.className = 'font-code-md text-code-md text-tertiary-fixed-dim';
+    }
+  }
+
+  saveButton.addEventListener('click', () => {
+    isDirty = false;
+    const now = new Date();
+    const utcHours = String(now.getUTCHours()).padStart(2, '0');
+    const utcMinutes = String(now.getUTCMinutes()).padStart(2, '0');
+    const timeStr = utcHours + ':' + utcMinutes + ' UTC';
+
+    noticeText.textContent = 'All changes saved at ' + timeStr;
+    noticeText.className = 'font-code-md text-code-md text-on-surface';
+    syncStatus.textContent = 'Clean state (' + timeStr + ')';
+    syncStatus.className = 'font-code-md text-code-md text-on-surface-variant';
+  });
+
+  // Objectives handling
+  const objectivesList = document.getElementById('objectivesList');
+  const addObjectiveBtn = document.getElementById('addObjectiveBtn');
+  const objCounter = document.getElementById('objCounter');
+
+  function updateObjectiveCount() {
+    const count = objectivesList.querySelectorAll('.objective-item').length;
+    objCounter.textContent = count + ' Active';
+  }
+
+  function removeObjective(button) {
+    const item = button.closest('.objective-item');
+    if (objectivesList.querySelectorAll('.objective-item').length > 1) {
+      item.remove();
+      updateObjectiveCount();
+      markDirty();
+    } else {
+      alert('At least one objective is required for a lesson.');
+    }
+  }
+
+  addObjectiveBtn.addEventListener('click', () => {
+    const count = objectivesList.querySelectorAll('.objective-item').length + 1;
+    const padded = String(count).padStart(2, '0');
+    
+    const div = document.createElement('div');
+    div.className = 'objective-item group flex items-start gap-space-sm bg-surface-container-lowest p-space-sm rounded transition-all';
+    div.innerHTML = `
+      <div class="pt-space-xs">
+        <input type="checkbox" checked class="w-4 h-4 rounded bg-surface-container-lowest accent-primary-container cursor-pointer">
+      </div>
+      <div class="flex-1 min-w-0">
+        <input type="text" placeholder="Specify user action, command, or expected outcome..." class="w-full bg-transparent text-on-surface font-code-md text-code-md focus:outline-none placeholder:text-outline selection:bg-primary-container selection:text-on-primary-container">
+        <span class="font-label-sm text-label-sm text-outline block mt-0.5">ID: OBJ_${padded} // REQUIRED</span>
+      </div>
+      <button type="button" onclick="removeObjective(this)" class="text-outline hover:text-error transition-colors p-space-xs" title="Remove objective">
+        <span class="material-symbols-outlined text-[18px]">delete</span>
+      </button>
+    `;
+    objectivesList.appendChild(div);
+    div.querySelector('input[type="text"]').focus();
+    updateObjectiveCount();
+    markDirty();
+  });
+</script></main><footer class="w-full bg-surface-container-lowest/80 py-space-md mt-auto shadow-[0_-1px_8px_rgba(0,0,0,0.3)]"><div class="w-full px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs font-code-md text-code-md text-on-surface-variant"><span class="text-primary-container font-bold">&gt;_</span><span>BashLab — Learn Bash by doing.</span></div><div class="flex items-center gap-space-lg font-code-md text-code-md text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="courses" href="#">Courses</a><a class="hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How it works</a><span class="text-outline text-label-sm font-label-sm">© 2026 BashLab. All rights reserved.</span></div></div></footer></body></html>

@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en" style=""><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03_Register_Desktop - BashLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-brand: #00FF66;
+      --secondary-brand: #00E5FF;
+      --tertiary-brand: #F59E0B;
+      --main-bg: #0A0D14;
+      --terminal-bg: #080B10;
+      --surface: #1D2027;
+      --surface-raised: #262A32;
+      --surface-dim: #14171E;
+      --divider: #343A43;
+      --control-border: #424A54;
+      --control-border-focus: #00FF66;
+      --primary-text: #E8E9F0;
+      --secondary-text: #B9CAB5;
+      --muted-text: #A0ADA2;
+      --error-text: #FF8F80;
+      --error-bg: rgba(255, 143, 128, 0.1);
+      --error-border: rgba(255, 143, 128, 0.35);
+      --success-text: #00FF66;
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--main-bg);
+      color: var(--primary-text);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Navbar */
+    .navbar {
+      height: 72px;
+      padding: 0 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--divider);
+      background-color: var(--main-bg);
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--muted-text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary-text);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .login-link {
+      color: var(--primary-text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 12px;
+      transition: color 0.15s ease;
+    }
+
+    .login-link:hover {
+      color: var(--primary-brand);
+    }
+
+    .start-learning-btn {
+      background-color: var(--primary-brand);
+      color: #0A0D14;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      border-radius: 4px;
+      text-decoration: none;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .start-learning-btn:hover {
+      background-color: #1aff75;
+    }
+
+    /* Main Container */
+    .main-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 56px 24px;
+    }
+
+    .register-card {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--surface);
+      border: 1px solid var(--divider);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-header {
+      margin-bottom: 28px;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--primary-text);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--secondary-text);
+      line-height: 1.5;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--primary-text);
+      margin-bottom: 8px;
+    }
+
+    .input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .form-input {
+      width: 100%;
+      background-color: #10131A;
+      border: 1px solid var(--control-border);
+      border-radius: 6px;
+      padding: 12px 14px;
+      color: var(--primary-text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      outline: none;
+    }
+
+    .form-input::placeholder {
+      color: #6C7A89;
+    }
+
+    .form-input:focus {
+      border-color: var(--control-border-focus);
+      box-shadow: 0 0 0 1px var(--control-border-focus);
+    }
+
+    .form-input.has-error {
+      border-color: var(--error-text);
+    }
+
+    .form-input.has-toggle {
+      padding-right: 42px;
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      color: var(--muted-text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      border-radius: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .password-toggle-btn:hover {
+      color: var(--primary-text);
+    }
+
+    /* Password Guidance */
+    .guidance-box {
+      margin-top: 8px;
+      padding: 10px 12px;
+      background-color: #14171F;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+    }
+
+    .guidance-title {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--muted-text);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .guidance-rules {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .guidance-item {
+      font-size: 12px;
+      color: var(--secondary-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-bullet {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--muted-text);
+    }
+
+    .rule-bullet.met {
+      background-color: var(--primary-brand);
+    }
+
+    .guidance-item.met {
+      color: var(--primary-text);
+    }
+
+    /* Inline Validation Messages */
+    .field-error {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--error-text);
+      margin-top: 6px;
+    }
+
+    .field-error.visible {
+      display: flex;
+    }
+
+    /* Primary Action */
+    .submit-btn {
+      width: 100%;
+      background-color: var(--primary-brand);
+      color: #0A0D14;
+      border: none;
+      border-radius: 6px;
+      padding: 14px 20px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+      margin-top: 24px;
+    }
+
+    .submit-btn:hover {
+      background-color: #1aff75;
+    }
+
+    .submit-btn:active {
+      transform: scale(0.99);
+    }
+
+    .submit-btn:disabled {
+      background-color: #2F4D38;
+      color: #7E9684;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Card Footer Link */
+    .card-footer {
+      margin-top: 22px;
+      text-align: center;
+    }
+
+    .quiet-link {
+      font-size: 13px;
+      color: var(--secondary-text);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .quiet-link span {
+      color: var(--secondary-brand);
+      font-weight: 500;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .quiet-link:hover span {
+      color: var(--primary-brand);
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(10, 13, 20, 0.3);
+      border-top-color: #0A0D14;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      display: none;
+    }
+
+    .submitting .spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    .footer {
+      padding: 24px 48px;
+      border-top: 1px solid var(--divider);
+      background-color: var(--main-bg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted-text);
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      height: 22px;
+      width: auto;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .footer-tagline {
+      color: var(--secondary-text);
+      font-size: 13px;
+    }
+
+    .footer-center {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer-link {
+      color: var(--muted-text);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--primary-text);
+    }
+
+    .footer-right {
+      color: var(--muted-text);
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 20px;
+      }
+      .footer {
+        padding: 24px 20px;
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .register-card {
+        padding: 28px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Public Navbar -->
+  <header class="border-b border-[#343a43]/60 bg-[#0a0d14]/90 backdrop-blur px-8 py-4 flex items-center justify-between z-10 sticky top-0" style="border-bottom: 1px solid rgba(52, 58, 67, 0.6); background-color: rgba(10, 13, 20, 0.9); backdrop-filter: blur(8px); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;"><div style="display: flex; align-items: center; gap: 32px;"><a href="/" style="display: flex; align-items: center; text-decoration: none;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiXBu6sHxdmU5uVTFeuXffbvAvic9rwWEwtYxA7D5pMCfoG5elL4iAssyVIkeBouq3uccpXX9mK4Qd9KTl2-a0fKADHSTfYGzlOOWFd56bFSXza_IzHHElOtfR_IOiUr93igQKFGDRu24EpbYwSLV1EeYT5khrwCDK-TWCDAtKsVksNhdZGWfx_vUrKJVA18cvheoqZURmBysKKkOBTmnz9flRheJ7d-yDEnsizvbRwSV2xkefpSaUHfFDv9WLTRXYfHU" alt="BashLab" style="height: 24px; width: auto; object-fit: contain; display: block;"></a><nav style="display: flex; align-items: center; gap: 24px;"><a href="/courses" style="color: #a0ada2; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s ease;" class="">Courses</a><a href="/#how-it-works" style="color: #a0ada2; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.15s ease;" class="">How it works</a></nav></div><div style="display: flex; align-items: center; gap: 20px;"><a href="/login" style="color: #e8e9f0; text-decoration: none; font-size: 14px; font-weight: 500;" class="">Log in</a><a href="/courses" style="background-color: #00FF66; color: #000000; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; padding: 8px 16px; border-radius: 4px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center;" class="">START LEARNING</a></div></header>
+
+  <!-- Main Register Content -->
+  <main class="main-wrapper" style="flex-direction: column;">
+    <div id="mockStateSelector" style="background: rgb(16, 19, 26); border: 1px solid rgb(31, 36, 46); border-radius: 6px; padding: 4px; display: inline-flex; gap: 8px; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; margin-bottom: 20px;"><button type="button" class="state-tab" data-state="default" style="background: transparent; border-radius: 4px; padding: 6px 12px; color: rgb(185, 202, 181); border: 1px solid transparent; cursor: pointer; font-family: inherit; font-size: inherit; opacity: 0.7;">1: DEFAULT</button><button type="button" class="state-tab" data-state="typing" style="background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 6px 12px; color: rgb(185, 202, 181); opacity: 0.7; cursor: pointer; font-family: inherit; font-size: inherit;">2: TYPING / VALIDATING</button><button type="button" class="state-tab" data-state="submitting" style="background: transparent; border: 1px solid transparent; border-radius: 4px; padding: 6px 12px; color: rgb(185, 202, 181); opacity: 0.7; cursor: pointer; font-family: inherit; font-size: inherit;">3: SUBMITTING</button><button type="button" class="state-tab" data-state="errors" style="background: rgb(25, 28, 36); border: 1px solid rgb(45, 55, 72); border-radius: 4px; padding: 6px 12px; color: rgb(0, 255, 102); opacity: 1; cursor: pointer; font-family: inherit; font-size: inherit;">4: FIELD ERRORS</button></div><div class="register-card">
+      <div class="card-header">
+        <h1 class="card-title">Create your account</h1>
+        <p class="card-desc">Begin your guided journey into Bash with hands-on practice in real sandboxes.</p>
+      </div>
+
+      <form id="registerForm" novalidate="" onsubmit="return false;">
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email address</label>
+          <div class="input-container">
+            <input type="email" id="email" name="email" class="form-input has-error" placeholder="alex.vance@lab.internal" value="alex.vance@lab.internal" required="" autocomplete="email">
+          </div>
+          <div id="emailError" class="field-error visible">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 4.5a.75.75 0 00-1.5 0v4a.75.75 0 001.5 0v-4z"></path>
+            </svg>
+            <span class="">Please enter a valid email address.</span>
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-container">
+            <input type="password" id="password" name="password" class="form-input has-toggle" placeholder="••••••••••••" value="Terminal$ecure2026" required="" autocomplete="new-password">
+            <button type="button" class="password-toggle-btn" id="togglePassword" aria-label="Show password">
+              <svg id="eyeIcon1" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Short Password Guidance -->
+          <div class="guidance-box">
+            <div class="guidance-title">
+              <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 3.25a.75.75 0 110 1.5.75.75 0 010-1.5zm.75 4a.75.75 0 00-1.5 0v3.5a.75.75 0 001.5 0v-3.5z"></path>
+              </svg>
+              <span class="">Password requirements</span>
+            </div>
+            <ul class="guidance-rules">
+              <li class="guidance-item met" id="ruleLength">
+                <span class="rule-bullet met"></span>
+                <span class="">At least 8 characters long</span>
+              </li>
+              <li class="guidance-item met" id="ruleVariety">
+                <span class="rule-bullet met"></span>
+                <span class="">Includes letters and numbers or symbols</span>
+              </li>
+            </ul>
+          </div>
+
+          <div id="passwordError" class="field-error">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 4.5a.75.75 0 00-1.5 0v4a.75.75 0 001.5 0v-4z"></path>
+            </svg>
+            <span class="">Password must be at least 8 characters.</span>
+          </div>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm password</label>
+          <div class="input-container">
+            <input type="password" id="confirmPassword" name="confirmPassword" class="form-input has-toggle has-error" placeholder="••••••••••••" value="Terminal$ecure2026" required="" autocomplete="new-password">
+            <button type="button" class="password-toggle-btn" id="toggleConfirmPassword" aria-label="Show password">
+              <svg id="eyeIcon2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div id="confirmError" class="field-error visible">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 10.5a.75.75 0 110-1.5.75.75 0 010 1.5zM8.75 4.5a.75.75 0 00-1.5 0v4a.75.75 0 001.5 0v-4z"></path>
+            </svg>
+            <span class="">Passwords do not match.</span>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" id="submitBtn" class="submit-btn">
+          <span class="spinner" id="btnSpinner" style="display: none;"></span>
+          <span id="btnText" class="">Create account</span>
+          <svg id="arrowIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block;">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+
+        <!-- Link to Login -->
+        <div class="card-footer">
+          <a href="/login" class="quiet-link">
+            Already have an account? <span class="">Log in →</span>
+          </a>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Shared Public Footer -->
+  <footer class="border-t border-[#343a43]/60 bg-[#0a0d14] px-8 py-5 flex items-center justify-between" style="border-top: 1px solid rgba(52, 58, 67, 0.6); background-color: rgb(10, 13, 20); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between;"><div style="display: flex; align-items: center;"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPC-yp5BEZjzE9vfzYKbDFHizAF2KxrQxIhGiurMzl0w_yoDU5NFpOKO5oxpMMHwNTfj7HE870NxEYYr8wWvvEPnv7g5qXLPpnHjt7NGdY7LOURNMN0Ijv4rIxzdgo5QR1ntFDIvk3k41kLBiJaIkSoQmXIcT6v7tC2hKHWojhdW2XR9aCpQl-4TR4wivwE27aX4aC0GA-qKEXkuT7g_ciSKA6T4W8FPWsqKreWsMjOTfwkl0s0uEmPesBy2Uv450W40c" alt="BashLab" style="height: 16px; width: auto; object-fit: contain; display: block;"><span style="color: #667568; margin: 0 12px;" class="">—</span><span style="font-size: 12px; color: #a0ada2;" class="">Learn Bash by doing.</span></div><div style="display: flex; align-items: center;"><a href="/courses" style="font-size: 12px; color: #b9cab5; text-decoration: none; transition: color 0.15s ease;" class="">Courses</a><a href="/#how-it-works" style="font-size: 12px; color: #b9cab5; text-decoration: none; margin-left: 24px; transition: color 0.15s ease;" class="">How it works</a><a href="/#faq" style="font-size: 12px; color: #b9cab5; text-decoration: none; margin-left: 24px; transition: color 0.15s ease;" class="">FAQ</a></div><div><span style="font-size: 12px; color: #667568;" class="">© 2026 BashLab. All rights reserved.</span></div></footer>
+
+  <script>
+    // Password visibility toggles
+    const setupPasswordToggle = (btnId, inputId, iconId) => {
+      const btn = document.getElementById(btnId);
+      const input = document.getElementById(inputId);
+      if (!btn || !input) return;
+
+      btn.addEventListener('click', () => {
+        const isPassword = input.type === 'password';
+        input.type = isPassword ? 'text' : 'password';
+        btn.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        btn.innerHTML = isPassword 
+          ? `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`
+          : `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+      });
+    };
+
+    setupPasswordToggle('togglePassword', 'password', 'eyeIcon1');
+    setupPasswordToggle('toggleConfirmPassword', 'confirmPassword', 'eyeIcon2');
+
+    // Dynamic guidance checklist check
+    const pwdInput = document.getElementById('password');
+    const ruleLength = document.getElementById('ruleLength');
+    const ruleVariety = document.getElementById('ruleVariety');
+
+    const updatePasswordRules = () => {
+      const val = pwdInput.value;
+      const isLongEnough = val.length >= 8;
+      const hasVariety = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(val) && /[a-zA-Z]/.test(val);
+
+      if (isLongEnough) {
+        ruleLength.classList.add('met');
+        ruleLength.querySelector('.rule-bullet').classList.add('met');
+      } else {
+        ruleLength.classList.remove('met');
+        ruleLength.querySelector('.rule-bullet').classList.remove('met');
+      }
+
+      if (hasVariety) {
+        ruleVariety.classList.add('met');
+        ruleVariety.querySelector('.rule-bullet').classList.add('met');
+      } else {
+        ruleVariety.classList.remove('met');
+        ruleVariety.querySelector('.rule-bullet').classList.remove('met');
+      }
+    };
+
+    pwdInput.addEventListener('input', updatePasswordRules);
+    updatePasswordRules();
+
+    // Form submission & validation states simulation
+    const form = document.getElementById('registerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const arrowIcon = document.getElementById('arrowIcon');
+    const emailInput = document.getElementById('email');
+    const confirmInput = document.getElementById('confirmPassword');
+    const emailError = document.getElementById('emailError');
+    const pwdError = document.getElementById('passwordError');
+    const confirmError = document.getElementById('confirmError');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      let isValid = true;
+      emailError.classList.remove('visible');
+      emailInput.classList.remove('has-error');
+      pwdError.classList.remove('visible');
+      pwdInput.classList.remove('has-error');
+      confirmError.classList.remove('visible');
+      confirmInput.classList.remove('has-error');
+
+      if (!emailInput.value.includes('@') || !emailInput.value.includes('.')) {
+        emailError.classList.add('visible');
+        emailInput.classList.add('has-error');
+        isValid = false;
+      }
+
+      if (pwdInput.value.length < 8) {
+        pwdError.classList.add('visible');
+        pwdInput.classList.add('has-error');
+        isValid = false;
+      }
+
+      if (pwdInput.value !== confirmInput.value) {
+        confirmError.classList.add('visible');
+        confirmInput.classList.add('has-error');
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      // Submitting state
+      submitBtn.disabled = true;
+      submitBtn.classList.add('submitting');
+      btnText.textContent = 'Creating account...';
+      arrowIcon.style.display = 'none';
+
+      setTimeout(() => {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('submitting');
+        btnText.textContent = 'Create account';
+        arrowIcon.style.display = 'inline-block';
+        // Simulates proceeding to verify email (/verify-email)
+      }, 1500);
+    });
+  </script>
+
+
+
+
+<script>(function(){const tabs=document.querySelectorAll('#mockStateSelector .state-tab');const email=document.getElementById('email');const pwd=document.getElementById('password');const confirmPwd=document.getElementById('confirmPassword');const emailErr=document.getElementById('emailError');const pwdErr=document.getElementById('passwordError');const confirmErr=document.getElementById('confirmError');const subBtn=document.getElementById('submitBtn');const sText=document.getElementById('btnText');const sSpin=document.getElementById('btnSpinner');const sArr=document.getElementById('arrowIcon');function setState(mode){tabs.forEach(t=>{if(t.dataset.state===mode){t.style.background='#191c24';t.style.color='#00ff66';t.style.borderColor='#2d3748';t.style.opacity='1';}else{t.style.background='transparent';t.style.color='#b9cab5';t.style.borderColor='transparent';t.style.opacity='0.7';}});emailErr.classList.remove('visible');pwdErr.classList.remove('visible');confirmErr.classList.remove('visible');email.classList.remove('has-error');pwd.classList.remove('has-error');confirmPwd.classList.remove('has-error');email.disabled=false;pwd.disabled=false;confirmPwd.disabled=false;subBtn.disabled=false;subBtn.classList.remove('submitting');sText.textContent='Create account';sSpin.style.display='none';sArr.style.display='inline-block';if(mode==='default'){email.value='';pwd.value='';confirmPwd.value='';updatePasswordRules();}else if(mode==='typing'){email.value='alex.vance@lab.internal';pwd.value='Terminal$ecure2026';confirmPwd.value='Terminal$ecure2026';updatePasswordRules();}else if(mode==='submitting'){email.value='alex.vance@lab.internal';pwd.value='Terminal$ecure2026';confirmPwd.value='Terminal$ecure2026';updatePasswordRules();email.disabled=true;pwd.disabled=true;confirmPwd.disabled=true;subBtn.disabled=true;subBtn.classList.add('submitting');sText.textContent='Creating account...';sSpin.style.display='inline-block';sArr.style.display='none';}else if(mode==='errors'){email.value='alex.vance-invalid';pwd.value='Terminal$ecure2026';confirmPwd.value='MismatchPass123';updatePasswordRules();emailErr.classList.add('visible');email.classList.add('has-error');confirmErr.classList.add('visible');confirmPwd.classList.add('has-error');}}tabs.forEach(tab=>{tab.addEventListener('click',()=>setState(tab.dataset.state));});})();</script>
+
+</body></html>

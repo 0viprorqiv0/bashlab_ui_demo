@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#93000a", "on-secondary-fixed": "#001f24", "tertiary-container": "#ffd7aa", "inverse-surface": "#e1e2ec", "surface-variant": "#32353d", "surface-container-low": "#191b23", "on-secondary": "#00363d", "on-tertiary-container": "#895600", "primary-fixed-dim": "#00e55b", "tertiary-fixed": "#ffddb8", "on-secondary-fixed-variant": "#004f58", "secondary": "#bdf4ff", "on-primary-fixed-variant": "#00531b", "outline": "#849581", "inverse-primary": "#006e27", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3038", "surface-container-lowest": "#0b0e15", "outline-variant": "#3b4b3a", "on-primary": "#003911", "on-tertiary": "#472a00", "on-tertiary-fixed-variant": "#653e00", "on-surface-variant": "#b9ccb5", "error": "ffb4ab", "secondary-fixed": "#9cf0ff", "on-tertiary-fixed": "#2a1700", "on-surface": "#e1e2ec", "surface": "#10131a", "on-primary-container": "#007128", "on-primary-fixed": "#002107", "surface-dim": "#10131a", "secondary-fixed-dim": "#00daf3", "background": "#10131a", "primary-fixed": "#6bff83", "surface-container": "#1d1f27", "primary-container": "#00ff66", "tertiary": "#fff9f6", "on-background": "#e1e2ec", "tertiary-fixed-dim": "#ffb95f", "on-secondary-container": "#00616d", "secondary-container": "#00e3fd", "surface-tint": "#00e55b", "surface-container-high": "#272a32", "surface-bright": "#363941", "primary": "#edffe8", "surface-container-highest": "#32353d", "on-error": "#690005" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1rem", "space-xs": "0.25rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "space-xl": "2.5rem", "gutter-desktop": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-sm": [ "Space Grotesk" ], "headline-md": [ "Space Grotesk" ], "headline-xl": [ "Space Grotesk" ], "code-lg": [ "JetBrains Mono" ], "headline-xl-mobile": [ "Space Grotesk" ], "code-md": [ "JetBrains Mono" ], "body-md": [ "Inter" ], "label-md": [ "JetBrains Mono" ], "headline-lg": [ "Space Grotesk" ], "body-lg": [ "Inter" ], "label-sm": [ "JetBrains Mono" ], "headline-lg-mobile": [ "Space Grotesk" ], "body-sm": [ "Inter" ] }, "fontSize": { "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-xl": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "code-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "500" } ], "headline-xl-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "code-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "headline-lg-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm group" data-path="content" href="#"><span class="font-code-lg text-code-lg font-bold text-primary-container group-hover:drop-shadow-[0_0_8px_rgba(0,255,102,0.4)] transition-all">&gt;_</span><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">BashLab</span><span class="px-space-xs py-[2px] rounded bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider">ADMIN</span></a><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary-container font-code-md text-code-md"><a aria-current="page" class="transition-colors text-primary-container font-code-md text-code-md" data-path="content" href="#">Content</a><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="users" href="#">Users</a><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="activity" href="#">Activity</a></nav></div><div class="flex items-center gap-space-lg"><a class="font-code-md text-code-md text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-space-xs" data-path="learning" href="#">← Back to learning</a><div class="flex items-center gap-space-sm pl-space-sm"><div class="text-right hidden sm:block"><div class="font-code-md text-code-md text-on-surface leading-tight">Alex Morgan</div><div class="font-label-sm text-label-sm text-outline leading-tight uppercase">Admin</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_6px_rgba(0,255,102,0.2)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-14 flex-1 bg-background"><div class="flex flex-col w-full">
+<!-- Content Canvas Container -->
+<div class="w-full max-w-6xl mx-auto px-gutter sm:px-gutter-desktop py-space-xl">
+<!-- Top Action Bar -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+<span>Curriculum Hierarchy Engine</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Content</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Manage courses, chapters, and lesson hierarchy across the platform.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm self-start sm:self-auto">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg bg-primary-container text-on-primary font-code-md text-code-md font-semibold hover:brightness-110 shadow-[0_0_12px_rgba(0,255,102,0.25)] transition-all cursor-pointer" id="open-add-course-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add course</span>
+</button>
+</div>
+</div>
+<!-- Course Outline Hierarchy Panel -->
+<div class="w-full bg-surface-container-low rounded-xl shadow-lg overflow-hidden flex flex-col">
+<!-- Primary Course Card Header -->
+<div class="w-full bg-surface-container p-space-md sm:p-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md flex-1 min-w-0">
+<button aria-label="Expand or collapse course" class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors focus:outline-none" id="course-toggle-btn" type="button">
+<span class="material-symbols-outlined text-[24px] transition-transform duration-200" id="course-chevron">expand_more</span>
+</button>
+<div class="flex flex-col min-w-0">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Shell 101 — Bash Basics</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-primary-container/15 text-primary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container mr-1.5"></span>
+                Published
+              </span>
+</div>
+<div class="flex items-center gap-space-md mt-0.5">
+<span class="font-code-md text-code-md text-secondary tracking-tight">/courses/shell-101</span>
+<span class="text-outline text-label-sm font-label-sm uppercase">12 lessons total</span>
+</div>
+</div>
+</div>
+<!-- Course Top Controls -->
+<div class="flex items-center gap-space-xs shrink-0 self-end md:self-auto">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface font-code-md text-code-md transition-colors cursor-pointer" id="open-edit-course-btn" type="button">
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">edit</span>
+<span>Edit course</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-code-md text-code-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">visibility_off</span>
+<span>Hide</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded bg-surface-container-high hover:bg-surface-variant text-secondary font-code-md text-code-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add_circle</span>
+<span>+ Add chapter</span>
+</button>
+</div>
+</div>
+<!-- Course Content Body (Expandable) -->
+<div class="w-full flex flex-col p-space-sm sm:p-space-md gap-space-md" id="course-tree-content">
+<!-- ================= CHAPTER 01 ================= -->
+<div class="w-full bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm">
+<!-- Chapter Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-high/60 px-space-md py-2.5 rounded">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">folder_open</span>
+<span class="font-code-md text-code-md text-secondary font-semibold">Chapter 01:</span>
+<span class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold">Navigate the filesystem</span>
+<span class="text-outline text-label-sm font-label-sm ml-1">(4 lessons)</span>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" type="button">Rename</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="p-1 text-outline-variant cursor-not-allowed" disabled="" title="Move Up (disabled)" type="button">
+<span class="material-symbols-outlined text-[18px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[18px]">south</span>
+</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="flex items-center gap-1 px-2 py-1 text-label-md font-label-md text-primary-container hover:bg-primary-container/10 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add lesson</span>
+</button>
+</div>
+</div>
+<!-- Chapter 01 Lessons Stack -->
+<div class="pl-4 sm:pl-8 flex flex-col gap-1.5">
+<!-- Lesson 1 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">01</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Where am I? — pwd</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-outline-variant cursor-not-allowed" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 2 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">02</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">List files — ls</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 3 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">03</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Move between directories — cd</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 4 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">04</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Understand absolute and relative paths</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= CHAPTER 02 ================= -->
+<div class="w-full bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm">
+<!-- Chapter Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-high/60 px-space-md py-2.5 rounded">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">folder_open</span>
+<span class="font-code-md text-code-md text-secondary font-semibold">Chapter 02:</span>
+<span class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold">Work with directories and files</span>
+<span class="text-outline text-label-sm font-label-sm ml-1">(4 lessons)</span>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" type="button">Rename</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[18px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[18px]">south</span>
+</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="flex items-center gap-1 px-2 py-1 text-label-md font-label-md text-primary-container hover:bg-primary-container/10 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add lesson</span>
+</button>
+</div>
+</div>
+<!-- Chapter 02 Lessons Stack -->
+<div class="pl-4 sm:pl-8 flex flex-col gap-1.5">
+<!-- Lesson 5 (Clickable to Lesson Editor Screen 16) -->
+<a class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors focus:outline-none" data-path="admin/content/lessons/5" href="#">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-primary-container font-medium w-6 text-right">05</span>
+<span class="material-symbols-outlined text-[16px] text-primary-container">terminal</span>
+<span class="font-code-md text-code-md text-on-surface group-hover:text-secondary font-medium truncate">Create directories and files — mkdir, touch</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto" onclick="event.stopPropagation();">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</a>
+<!-- Lesson 6 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">06</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Copy and move files — cp, mv</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 7 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">07</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Remove practice files — rm, rmdir</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 8 (Draft) -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">08</span>
+<span class="material-symbols-outlined text-[16px] text-outline">edit_note</span>
+<span class="font-code-md text-code-md text-on-surface-variant font-medium truncate">Write text to files — redirection</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-tertiary-fixed-dim/15 text-tertiary-fixed-dim font-medium">Draft</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= CHAPTER 03 ================= -->
+<div class="w-full bg-surface-container rounded-lg p-space-md flex flex-col gap-space-sm">
+<!-- Chapter Row -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm bg-surface-container-high/60 px-space-md py-2.5 rounded">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-outline text-[20px]">folder_open</span>
+<span class="font-code-md text-code-md text-secondary font-semibold">Chapter 03:</span>
+<span class="font-headline-sm text-[16px] leading-tight text-on-surface font-semibold">Read and search content</span>
+<span class="text-outline text-label-sm font-label-sm ml-1">(4 lessons)</span>
+</div>
+<div class="flex items-center gap-1 shrink-0">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" type="button">Rename</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="p-1 text-on-surface-variant hover:text-on-surface hover:bg-surface-variant rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[18px]">north</span>
+</button>
+<button class="p-1 text-outline-variant cursor-not-allowed" disabled="" title="Move Down (disabled)" type="button">
+<span class="material-symbols-outlined text-[18px]">south</span>
+</button>
+<div class="w-[1px] h-3 bg-outline-variant mx-1"></div>
+<button class="flex items-center gap-1 px-2 py-1 text-label-md font-label-md text-primary-container hover:bg-primary-container/10 rounded transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add lesson</span>
+</button>
+</div>
+</div>
+<!-- Chapter 03 Lessons Stack -->
+<div class="pl-4 sm:pl-8 flex flex-col gap-1.5">
+<!-- Lesson 9 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">09</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Read a file — cat</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 10 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">10</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Read the beginning and end — head, tail</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 11 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">11</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Find matching text — grep</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+<!-- Lesson 12 -->
+<div class="group flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs px-space-md py-2 rounded bg-surface-container-lowest hover:bg-surface-container-high transition-colors">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium w-6 text-right">12</span>
+<span class="material-symbols-outlined text-[16px] text-outline">terminal</span>
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Connect commands with pipes</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-label-sm bg-primary-container/10 text-primary-container font-medium">Published</span>
+</div>
+<div class="flex items-center gap-1 shrink-0 self-end sm:self-auto">
+<button class="px-2 py-1 text-label-md font-label-md text-on-surface-variant hover:text-secondary rounded transition-colors" type="button">Edit</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Up" type="button">
+<span class="material-symbols-outlined text-[16px]">north</span>
+</button>
+<button class="p-1 text-on-surface-variant hover:text-on-surface rounded transition-colors" title="Move Down" type="button">
+<span class="material-symbols-outlined text-[16px]">south</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ================= EDIT COURSE MODAL / DIALOG ================= -->
+<div aria-labelledby="edit-course-title" aria-modal="true" class="fixed inset-0 z-50 flex items-center justify-center p-gutter bg-surface-container-lowest/80 backdrop-blur-sm hidden" id="edit-course-modal" role="dialog">
+<div class="w-full max-w-lg bg-surface-container rounded-xl shadow-2xl p-space-lg flex flex-col gap-space-md">
+<!-- Modal Header -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-code-lg text-code-lg text-primary-container">&gt;</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold" id="edit-course-title">Edit Course Settings</h2>
+</div>
+<button aria-label="Close modal" class="p-1 rounded text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors" id="close-edit-course-btn" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Unsaved Changes Notice -->
+<div class="px-space-md py-2 rounded bg-tertiary-fixed-dim/10 flex items-center gap-space-xs text-tertiary-fixed-dim font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span>You have unsaved changes in metadata.</span>
+</div>
+<!-- Form Fields -->
+<div class="flex flex-col gap-space-md mt-1">
+<!-- Course Title Field -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="course-title-input">Course Title</label>
+<input class="w-full px-space-md py-2 rounded bg-surface-container-lowest text-on-surface font-code-md text-code-md focus:outline-none focus:bg-surface-container-lowest" id="course-title-input" type="text" value="Shell 101 — Bash Basics"/>
+</div>
+<!-- Slug Field -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="course-slug-input">URL Slug</label>
+<div class="flex items-center px-space-md py-2 rounded bg-surface-container-lowest">
+<span class="font-code-md text-code-md text-outline select-none">/courses/</span>
+<input class="w-full bg-transparent text-secondary font-code-md text-code-md focus:outline-none ml-0.5" id="course-slug-input" type="text" value="shell-101"/>
+</div>
+</div>
+<!-- Description Field -->
+<div class="flex flex-col gap-1">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" for="course-desc-input">Description</label>
+<textarea class="w-full px-space-md py-2 rounded bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none resize-none" id="course-desc-input" rows="3">A structured, hands-on path designed to take absolute beginners through terminal navigation, core utilities, stream redirection, and process fundamentals.</textarea>
+</div>
+<!-- Status Selector -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Status</span>
+<div class="grid grid-cols-3 gap-space-xs">
+<label class="flex items-center justify-center gap-1.5 py-2 px-space-sm rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer text-on-surface-variant has-[:checked]:bg-surface-bright has-[:checked]:text-on-surface transition-colors">
+<input class="hidden" name="course-status" type="radio" value="draft"/>
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span class="font-code-md text-code-md">Draft</span>
+</label>
+<label class="flex items-center justify-center gap-1.5 py-2 px-space-sm rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer text-on-surface-variant has-[:checked]:bg-surface-bright has-[:checked]:text-on-surface transition-colors">
+<input checked="" class="hidden" name="course-status" type="radio" value="published"/>
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-code-md text-code-md">Published</span>
+</label>
+<label class="flex items-center justify-center gap-1.5 py-2 px-space-sm rounded bg-surface-container-high hover:bg-surface-variant cursor-pointer text-on-surface-variant has-[:checked]:bg-surface-bright has-[:checked]:text-on-surface transition-colors">
+<input class="hidden" name="course-status" type="radio" value="hidden"/>
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span class="font-code-md text-code-md">Hidden</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Modal Actions -->
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-space-md py-2 rounded bg-surface-container-high hover:bg-surface-variant text-on-surface-variant hover:text-on-surface font-code-md text-code-md transition-colors cursor-pointer" id="cancel-edit-course-btn" type="button">
+          Cancel
+        </button>
+<button class="px-space-md py-2 rounded bg-primary-container text-on-primary font-code-md text-code-md font-semibold hover:brightness-110 shadow-[0_0_8px_rgba(0,255,102,0.2)] transition-all cursor-pointer" id="save-edit-course-btn" type="button">
+          Save Changes
+        </button>
+</div>
+</div>
+</div>
+<!-- Client-side Interactive Behaviors -->
+<script>
+    (function() {
+      // Expand/Collapse Course Tree
+      const toggleBtn = document.getElementById('course-toggle-btn');
+      const treeContent = document.getElementById('course-tree-content');
+      const chevron = document.getElementById('course-chevron');
+
+      if (toggleBtn && treeContent && chevron) {
+        toggleBtn.addEventListener('click', () => {
+          const isHidden = treeContent.classList.toggle('hidden');
+          chevron.style.transform = isHidden ? 'rotate(-90deg)' : 'rotate(0deg)';
+        });
+      }
+
+      // Edit Course Modal Controls
+      const modal = document.getElementById('edit-course-modal');
+      const openEditBtn = document.getElementById('open-edit-course-btn');
+      const openAddBtn = document.getElementById('open-add-course-btn');
+      const closeBtn = document.getElementById('close-edit-course-btn');
+      const cancelBtn = document.getElementById('cancel-edit-course-btn');
+      const saveBtn = document.getElementById('save-edit-course-btn');
+
+      function openModal() {
+        if (modal) modal.classList.remove('hidden');
+      }
+
+      function closeModal() {
+        if (modal) modal.classList.add('hidden');
+      }
+
+      if (openEditBtn) openEditBtn.addEventListener('click', openModal);
+      if (openAddBtn) openAddBtn.addEventListener('click', openModal);
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+      if (saveBtn) saveBtn.addEventListener('click', closeModal);
+
+      // Close modal on backdrop click
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest/80 py-space-md mt-auto shadow-[0_-1px_8px_rgba(0,0,0,0.3)]"><div class="w-full px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs font-code-md text-code-md text-on-surface-variant"><span class="text-primary-container font-bold">&gt;_</span><span>BashLab — Learn Bash by doing.</span></div><div class="flex items-center gap-space-lg font-code-md text-code-md text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="courses" href="#">Courses</a><a class="hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How it works</a><span class="text-outline text-label-sm font-label-sm">© 2026 BashLab. All rights reserved.</span></div></div></footer></body></html>

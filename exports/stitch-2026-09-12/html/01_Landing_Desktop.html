@@ -1,0 +1,559 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>BashLab — Learn Bash by doing</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-hero": "#0A0D14",
+            "surface-cmd": "#141820",
+            "surface-learn": "#0A0D14",
+            "surface-course": "#171C24",
+            "surface-faq": "#0A0D14",
+            "divider-border": "#39434F",
+            "outline": "#849581",
+            "on-surface": "#e1e2ec",
+            "on-surface-variant": "#9ba3b5",
+            "primary": "#00FF66",
+            "secondary": "#00E5FF",
+            "accent-amber": "#F59E0B"
+          },
+          fontFamily: {
+            "headline": ["Space Grotesk", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "code": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      background-color: #0A0D14;
+      color: #e1e2ec;
+      overflow-x: hidden;
+    }
+    ::selection {
+      background-color: #00FF66;
+      color: #0A0D14;
+    }
+    .glow-radial-hero {
+      background: radial-gradient(circle at 50% 30%, rgba(0, 255, 102, 0.08) 0%, rgba(0, 229, 255, 0.03) 40%, transparent 70%);
+    }
+    .glow-pill {
+      box-shadow: 0 0 25px -4px rgba(0, 255, 102, 0.45);
+    }
+  </style>
+</head>
+<body class="font-body antialiased bg-[#0A0D14] text-on-surface">
+<!-- PUBLIC HEADER -->
+<header class="fixed top-0 left-0 w-full z-50 border-b border-[#343a43]/60 bg-[#0a0d14]/90 backdrop-blur px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-10">
+<a class="flex items-center" href="/">
+<img alt="BashLab" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE8_EDsVAWwCIy1DxPkTRW7StyTAaVZD0WQ1VvfEE78C8-9K7zEqlrawNx9ytkBQlnRPtIfCzQhWm7OluOG2tPSTddPAm3XslmPnNrHIwtNEvBctbSadwP1OcdybvKmOe6h74YbK_cnrXLu9TuL4y-czKMKHOHKCUwwnSBm1GUklDlF30kon5DbD7b1eijk3cu9QeinpWVgPW1iX8ngoN_cTmJXquXeCPJiGOkd10zDjJqFtRjVshoxs4FQGCcWHCtRJA">
+</a>
+<nav class="hidden md:flex items-center gap-8 font-code text-xs text-on-surface-variant">
+<a class="hover:text-white transition-colors" href="/courses">Courses</a>
+<a class="hover:text-white transition-colors" href="/#how-it-works">How it works</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<a class="text-xs font-code text-on-surface-variant hover:text-white px-3 py-1.5 transition-colors" href="/login">Log in</a>
+<a class="inline-flex items-center justify-center px-4 py-2 rounded font-code text-xs font-semibold uppercase tracking-wider bg-[#00FF66] text-black hover:brightness-110 glow-pill transition-all" href="/courses">
+START LEARNING
+</a>
+</div>
+</header>
+<main class="pt-16 relative">
+<!-- SECTION 1: HERO (01 / START) — Surface: #0A0D14, Center-Aligned Only -->
+<section class="relative bg-[#0A0D14] pt-20 pb-20 sm:pt-24 sm:pb-24 overflow-hidden" id="hero">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[620px] glow-radial-hero pointer-events-none -z-10"></div>
+<div class="max-w-[1200px] mx-auto px-6 sm:px-8 text-center flex flex-col items-center">
+<!-- Eyebrow -->
+<div class="inline-flex items-center gap-2 px-3 py-1 mb-8 rounded-full bg-white/[0.04] border border-white/10">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-code text-[11px] uppercase tracking-widest text-primary font-semibold">// 01 / START</span>
+</div>
+<!-- Headline: deliberate 2-line layout, max-width 800-900px, electric green on curiosity -->
+<h1 class="font-headline font-bold text-4xl sm:text-6xl md:text-[64px] leading-[1.08] tracking-tight text-white mb-6 max-w-[860px]">
+          Every command starts<br>
+          with <span class="text-primary">curiosity</span>.
+        </h1>
+<!-- Description: 540-620px width -->
+<p class="font-body text-base sm:text-lg text-on-surface-variant max-w-[600px] leading-relaxed mb-10 text-center">
+          Learn Bash one small step at a time. Try a command, understand what it does, and build confidence through guided practice.
+        </p>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center justify-center gap-4 mb-12">
+<a class="inline-flex items-center gap-2 px-7 py-3.5 rounded font-code text-sm font-bold bg-primary text-[#0A0D14] hover:brightness-110 active:scale-[0.98] glow-pill transition-all" href="/courses">
+<span class="">Start learning</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+<a class="inline-flex items-center gap-2 px-6 py-3.5 rounded font-code text-sm text-on-surface-variant hover:text-white border border-white/10 hover:border-white/20 bg-white/[0.02] hover:bg-white/[0.05] transition-all" href="#first-command">
+<span class="">Try your first command</span>
+<span class="material-symbols-outlined text-base">arrow_downward</span>
+</a>
+</div>
+<!-- Hero closing transition -->
+<div class="pt-2">
+<p class="font-code text-xs sm:text-sm text-outline flex items-center justify-center gap-2 tracking-wide">
+<span class="text-primary font-semibold">$ pwd</span>
+<span class="">— Start with a simple question: where am I?</span>
+</p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: FIRST COMMAND (02 / TRY) — Surface: #141820, 40/60 Split -->
+<section class="relative bg-[#141820] py-14 sm:py-16 border-t border-[#39434F]" id="first-command">
+<div class="absolute top-0 left-6 sm:left-8 lg:left-[calc((100vw-1200px)/2+2rem)] w-16 h-[2px] bg-primary"></div>
+<div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start text-left">
+<!-- Left Column (~40%): Intro & Transition -->
+<div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
+<div>
+<span class="font-code text-xs uppercase tracking-widest text-secondary font-semibold block mb-3">// 02 / TRY</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-white tracking-tight leading-snug mb-4">
+                Ask the terminal where you are.
+              </h2>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-[480px]">
+                In the command line, every file you view and script you run depends on your current directory. Asking <code class="text-primary font-code text-xs px-1.5 py-0.5 rounded bg-white/5 border border-white/10">pwd</code> (print working directory) gives you your immediate bearings before making changes.
+              </p>
+</div>
+<!-- Transition attached at bottom -->
+<div class="pt-4 border-t border-white/[0.06] mt-4">
+<p class="font-body text-xs sm:text-sm text-outline leading-relaxed">
+                You have seen a command. Next, learn when and why to use it.
+              </p>
+</div>
+</div>
+<!-- Right Column (~60%): Interactive Terminal Demo -->
+<div class="lg:col-span-7">
+<div class="w-full max-w-[640px] rounded-xl border border-white/10 bg-[#0B0F17] shadow-2xl overflow-hidden text-left ml-auto">
+<!-- Terminal Header -->
+<div class="px-4 py-2.5 bg-[#121622] border-b border-white/10 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-[#ff5f56]/70"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]/70"></span>
+<span class="w-2.5 h-2.5 rounded-full bg-[#27c93f]/70"></span>
+<span class="ml-2 font-code text-xs text-on-surface-variant">guest@bashlab:~$</span>
+</div>
+<span class="font-code text-[11px] text-outline">Interactive demo — simulated commands, no real shell</span>
+</div>
+<!-- Terminal Log -->
+<div class="p-5 font-code text-xs space-y-3 min-h-[170px] max-h-[260px] overflow-y-auto" id="term-log">
+<div class="text-outline">// Suggested command ready. Click below or press Enter to run:</div>
+<div class="flex items-start gap-2 text-white">
+<span class="text-secondary font-semibold">guest@bashlab:~$</span>
+<span class="text-primary font-bold">pwd</span>
+</div>
+<div class="pl-4 text-on-surface font-semibold text-white/90">/bashlab</div>
+<div class="pl-4 text-[11px] text-on-surface-variant border-l-2 border-primary/40 leading-relaxed py-0.5">
+<code class="text-primary font-semibold">pwd</code> prints your current directory. This path belongs to the demo.
+                </div>
+</div>
+<!-- Input Prompt -->
+<div class="px-4 py-2 bg-[#0E121C] border-t border-white/10 flex items-center gap-2 font-code text-xs">
+<span class="text-secondary font-semibold shrink-0">guest@bashlab:~$</span>
+<input autocomplete="off" class="w-full bg-transparent border-0 p-0 text-white font-code text-xs focus:ring-0 focus:outline-none placeholder:text-outline/50" id="cmd-input" placeholder="Type pwd, ls, whoami, help..." spellcheck="false" type="text">
+<button class="px-3 py-1 rounded bg-white/10 hover:bg-white/20 text-white font-code text-[11px] uppercase tracking-wider shrink-0 transition-colors" id="btn-run-input" type="button">RUN</button>
+</div>
+<!-- Command Bar & Controls -->
+<div class="px-4 py-2.5 bg-[#090C12] border-t border-white/5 flex flex-wrap items-center justify-between gap-2">
+<div class="flex items-center gap-1.5 flex-wrap">
+<button class="chip-cmd px-2.5 py-1 rounded bg-primary/15 hover:bg-primary/25 border border-primary/40 text-primary font-code text-xs font-semibold transition-colors flex items-center gap-1" data-cmd="pwd">
+<span class="material-symbols-outlined text-sm">play_arrow</span>
+<span class="">Run demo command: pwd</span>
+</button>
+<button class="chip-cmd px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-code text-xs transition-colors" data-cmd="ls">ls</button>
+<button class="chip-cmd px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-code text-xs transition-colors" data-cmd="whoami">whoami</button>
+<button class="chip-cmd px-2 py-1 rounded bg-white/5 hover:bg-white/10 border border-white/10 text-on-surface font-code text-xs transition-colors" data-cmd="help">help</button>
+</div>
+<button class="text-outline hover:text-white font-code text-[11px] uppercase tracking-wider transition-colors" id="btn-clear" type="button">CLEAR</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: GUIDED LEARNING (03 / LEARN) — Surface: #0A0D14, REVERSED on Desktop (58% Left / 42% Right) -->
+<section class="relative bg-[#0A0D14] py-14 sm:py-16 border-t border-[#39434F]" id="how-it-works">
+<div class="absolute top-0 left-6 sm:left-8 lg:left-[calc((100vw-1200px)/2+2rem)] w-16 h-[2px] bg-secondary"></div>
+<div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+<!-- Flexbox with column reverse on mobile, row on desktop to ensure heading comes first in mobile reading order -->
+<div class="flex flex-col-reverse lg:flex-row gap-10 lg:gap-14 items-start text-left">
+<!-- Left Column on Desktop (~58%): 3 Open Editorial Rows -->
+<div class="w-full lg:w-[58%]">
+<div class="divide-y divide-[#39434F]/40 border-y border-[#39434F]/40">
+<!-- Row 1 -->
+<div class="py-6 group">
+<div class="flex items-start gap-4">
+<span class="font-code text-primary font-bold text-sm tracking-wider mt-0.5 shrink-0">01.</span>
+<div class="space-y-1.5">
+<h3 class="font-headline font-bold text-lg sm:text-xl text-white group-hover:text-primary transition-colors">
+                      Understand the command
+                    </h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                      Location &amp; navigation concept. Before executing scripts or manipulating files, you learn why knowing where you are matters and how paths resolve in Linux file trees.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="py-6 group">
+<div class="flex items-start gap-4">
+<span class="font-code text-secondary font-bold text-sm tracking-wider mt-0.5 shrink-0">02.</span>
+<div class="space-y-1.5">
+<h3 class="font-headline font-bold text-lg sm:text-xl text-white group-hover:text-secondary transition-colors">
+                      Practice in real Bash
+                    </h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                      Real isolated sandbox execution inside guided lessons. Type genuine commands directly into an ephemeral Linux environment running safely in your browser.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Row 3 -->
+<div class="py-6 group">
+<div class="flex items-start gap-4">
+<span class="font-code text-accent-amber font-bold text-sm tracking-wider mt-0.5 shrink-0">03.</span>
+<div class="space-y-1.5">
+<div class="flex items-center gap-2.5 flex-wrap">
+<h3 class="font-headline font-bold text-lg sm:text-xl text-white group-hover:text-accent-amber transition-colors">
+                        Interpret feedback
+                      </h3>
+<span class="font-code text-[10px] text-outline uppercase tracking-wider px-2 py-0.5 rounded bg-white/[0.04] border border-white/10">Illustrative</span>
+</div>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                      Requirement-level feedback on directory states and output. Automated verification confirms whether you moved, created, or piped the expected files correctly.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column on Desktop (~42%): Section Heading, Intro, and Transition -->
+<div class="w-full lg:w-[42%] flex flex-col space-y-6">
+<div>
+<span class="font-code text-xs uppercase tracking-widest text-primary font-semibold block mb-3">// 03 / LEARN</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-white tracking-tight leading-snug mb-4">
+                Understand it. Try it. Make it stick.
+              </h2>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                Curiosity gets you started, but deliberate feedback is how discovery turns into lasting shell muscle memory. Each lesson pairs conceptual mental models with guided execution.
+              </p>
+</div>
+<!-- Transition kept close to intro -->
+<div class="pt-4 border-t border-white/[0.06]">
+<p class="font-body text-xs sm:text-sm text-outline leading-relaxed">
+                Shell 101 turns these small steps into a clear learning path.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: COURSE SPOTLIGHT (04 / COURSE) — Surface: #171C24, 45% Left / 55% Right -->
+<section class="relative bg-[#171C24] py-14 sm:py-16 border-t border-[#39434F]" id="courses">
+<div class="absolute top-0 left-6 sm:left-8 lg:left-[calc((100vw-1200px)/2+2rem)] w-16 h-[2px] bg-primary"></div>
+<div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+<!-- Section Header Left-Aligned -->
+<div class="mb-8 text-left">
+<span class="font-code text-xs uppercase tracking-widest text-primary font-semibold block mb-2">// 04 / COURSE</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-white tracking-tight">Your next command starts in Shell 101.</h2>
+</div>
+<!-- Broad Course Spotlight Spanning Full Container Width -->
+<div class="p-7 sm:p-9 rounded-xl bg-[#0D1017]/85 border border-white/10 text-left">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+<!-- Left Column (~45%) -->
+<div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
+<div>
+<div class="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
+<span class="font-code text-xs font-semibold px-2.5 py-1 rounded bg-primary/10 border border-primary/30 text-primary uppercase tracking-wider">
+                    BEGINNER TRACK · 12 LESSONS
+                  </span>
+<span class="font-code text-xs text-outline">Est. 2 hours · Free Starter</span>
+</div>
+<h3 class="font-headline font-bold text-2xl sm:text-3xl text-white mb-3">
+                  Shell 101 — Bash Basics
+                </h3>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed mb-6">
+                  The foundational pathway for developers, system administrators, and curious learners. Begins with orientation and navigation, then builds toward manipulating files, pipes, and text inspection.
+                </p>
+<div>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded font-code text-sm font-bold bg-primary text-[#0A0D14] hover:brightness-110 active:scale-[0.98] glow-pill transition-all" href="/courses/shell-101">
+<span class="">Explore Shell 101</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Transition attached at bottom -->
+<div class="pt-4 border-t border-white/[0.06]">
+<p class="font-body text-xs sm:text-sm text-outline">
+                  Before you begin, here are the practical details.
+                </p>
+</div>
+</div>
+<!-- Right Column (~55%): Elegant 3-line Chapter Index -->
+<div class="lg:col-span-7">
+<div class="divide-y divide-white/[0.08] border-y border-white/[0.08] py-1 bg-black/25 rounded-lg px-4 sm:px-6">
+<!-- Ch 01 -->
+<div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3 font-body text-sm text-white">
+<span class="font-code text-xs text-outline font-semibold">CH 01</span>
+<span class="font-medium">Filesystem navigation</span>
+</div>
+<span class="font-code text-xs text-secondary">pwd, ls, cd, relative &amp; absolute paths</span>
+</div>
+<!-- Ch 02 -->
+<div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3 font-body text-sm text-white">
+<span class="font-code text-xs text-outline font-semibold">CH 02</span>
+<span class="font-medium">Directories &amp; files</span>
+</div>
+<span class="font-code text-xs text-primary">mkdir, touch, cp, mv, rm</span>
+</div>
+<!-- Ch 03 -->
+<div class="py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+<div class="flex items-center gap-3 font-body text-sm text-white">
+<span class="font-code text-xs text-outline font-semibold">CH 03</span>
+<span class="font-medium">Read &amp; search content</span>
+</div>
+<span class="font-code text-xs text-accent-amber">cat, head, tail, grep, | pipes</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: REASSURANCE / FAQ (05 / QUESTIONS) — Surface: #0A0D14, 40/60 Split -->
+<section class="relative bg-[#0A0D14] py-14 sm:py-16 border-t border-[#39434F]" id="faq">
+<div class="absolute top-0 left-6 sm:left-8 lg:left-[calc((100vw-1200px)/2+2rem)] w-16 h-[2px] bg-secondary"></div>
+<div class="max-w-[1200px] mx-auto px-6 sm:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start text-left">
+<!-- Left Column (~40%) -->
+<div class="lg:col-span-5 flex flex-col justify-between h-full space-y-6">
+<div>
+<span class="font-code text-xs uppercase tracking-widest text-outline font-semibold block mb-3">// 05 / QUESTIONS</span>
+<h2 class="font-headline font-bold text-3xl sm:text-4xl text-white tracking-tight leading-snug mb-4">
+                Ready when you are.
+              </h2>
+<p class="font-body text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-[440px]">
+                Zero local configuration, risk-free sandboxes, and tracked completion. Jump into an exercise whenever you are ready to experiment.
+              </p>
+</div>
+<div class="pt-2">
+<a class="inline-flex items-center gap-2 font-code text-xs text-primary hover:underline uppercase tracking-wider font-semibold" href="/courses">
+<span class="">EXPLORE COURSES</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Right Column (~60%): 3 Clean Accordion Rows -->
+<div class="lg:col-span-7">
+<div class="divide-y divide-white/[0.08] border-y border-white/[0.08] text-left">
+<!-- FAQ 1 -->
+<div class="py-5">
+<button class="faq-toggle w-full flex items-center justify-between text-left group" data-target="faq-ans-1" type="button">
+<span class="font-headline font-medium text-base sm:text-lg text-white group-hover:text-primary transition-colors">
+                    Do I need to install anything?
+                  </span>
+<span class="faq-icon font-code text-xl text-outline group-hover:text-primary transition-colors ml-4 shrink-0">+</span>
+</button>
+<div class="faq-content hidden pt-3 pr-6 text-sm font-body text-on-surface-variant leading-relaxed" id="faq-ans-1">
+                  No. BashLab runs a genuine containerized Linux environment directly in your browser. All you need is an updated modern web browser.
+                </div>
+</div>
+<!-- FAQ 2 -->
+<div class="py-5">
+<button class="faq-toggle w-full flex items-center justify-between text-left group" data-target="faq-ans-2" type="button">
+<span class="font-headline font-medium text-base sm:text-lg text-white group-hover:text-primary transition-colors">
+                    Is my progress saved?
+                  </span>
+<span class="faq-icon font-code text-xl text-outline group-hover:text-primary transition-colors ml-4 shrink-0">+</span>
+</button>
+<div class="faq-content hidden pt-3 pr-6 text-sm font-body text-on-surface-variant leading-relaxed" id="faq-ans-2">
+                  Yes. Your course completion, lesson milestones, and exercise checks are permanently tied to your learner account.
+                </div>
+</div>
+<!-- FAQ 3 -->
+<div class="py-5">
+<button class="faq-toggle w-full flex items-center justify-between text-left group" data-target="faq-ans-3" type="button">
+<span class="font-headline font-medium text-base sm:text-lg text-white group-hover:text-primary transition-colors">
+                    What happens when a practice session ends?
+                  </span>
+<span class="faq-icon font-code text-xl text-outline group-hover:text-primary transition-colors ml-4 shrink-0">+</span>
+</button>
+<div class="faq-content hidden pt-3 pr-6 text-sm font-body text-on-surface-variant leading-relaxed" id="faq-ans-3">
+                  Practice sandboxes are ephemeral and automatically recycle after 10–15 minutes of inactivity to keep resources clean. Your learning progress remains permanently saved.
+                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- SHARED FOOTER -->
+<footer class="w-full border-t border-[#343a43]/60 bg-[#0a0d14] px-8 py-5 flex items-center justify-between">
+<div class="flex items-center">
+<img alt="BashLab" class="h-4 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5-e82uVeKkExdUhpr71CZcNvWOZZhREsRYpGt5pSL9gPa6jidBbZlT8jyuo11GKwAimVQ9FDB289sV2Ogi1IrtvvR_0pzszYEDHgA4T3--JnTQncwtDTrKnFFawTYQ_GKQeal2_abf0XgfimRCa7fyZQhFZtVlXL1cGRXEVR8TP0WeEgof4eEbVrsxCnnDbBQhRUfvLWI9D2n4JUZJY9Q9tlF05CT_EiYz80d10meeXe3w6k2Db0hCsEOurPQrGDJkfg">
+<span class="text-[#667568] mx-3">—</span>
+<span class="text-xs text-[#a0ada2]">Learn Bash by doing.</span>
+</div>
+<div class="flex items-center">
+<a class="text-xs text-[#b9cab5] hover:text-[#00ff66] transition-colors" href="/courses">Courses</a>
+<a class="text-xs text-[#b9cab5] hover:text-[#00ff66] transition-colors ml-6" href="/#how-it-works">How it works</a>
+<a class="text-xs text-[#b9cab5] hover:text-[#00ff66] transition-colors ml-6" href="/#faq">FAQ</a>
+</div>
+<div>
+<span class="text-xs text-[#667568]">© 2026 BashLab. All rights reserved.</span>
+</div>
+</footer>
+<!-- JAVASCRIPT DEMO & ACCORDION INTERACTIONS -->
+<script>
+    (function() {
+      const log = document.getElementById('term-log');
+      const input = document.getElementById('cmd-input');
+      const btnRun = document.getElementById('btn-run-input');
+      const btnClear = document.getElementById('btn-clear');
+      const chips = document.querySelectorAll('.chip-cmd');
+      const faqToggles = document.querySelectorAll('.faq-toggle');
+
+      const RESPONSES = {
+        'pwd': {
+          out: '/bashlab',
+          desc: 'pwd prints your current directory. This path belongs to the demo.'
+        },
+        'ls': {
+          out: 'about.txt   courses/   getting-started.txt',
+          desc: 'ls lists entries in the demo root.'
+        },
+        'whoami': {
+          out: 'guest',
+          desc: 'You are a curious learner. BashLab helps you turn that curiosity into command-line skills.'
+        },
+        'help': {
+          out: 'Available demo commands: pwd, ls, whoami, cat about.txt, courses, help, clear',
+          desc: 'Simulated commands to explore how Bash interaction works.'
+        },
+        'cat about.txt': {
+          out: 'BashLab provides short guided lessons, real browser practice, and requirement feedback.',
+          desc: 'Displaying text file contents with cat.'
+        },
+        'cat getting-started.txt': {
+          out: 'Browse courses -> open a course -> choose a lesson -> start practicing.',
+          desc: 'Getting started guide loaded.'
+        },
+        'courses': {
+          out: 'Shell 101 — Bash Basics [Available now at /courses/shell-101]',
+          desc: 'Explore the full course syllabus in the course section below.'
+        }
+      };
+
+      function escapeHtml(str) {
+        return str.replace(/[&<>'"]/g, function(t) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[t] || t;
+        });
+      }
+
+      function executeCommand(raw) {
+        const cmd = raw.trim();
+        if (!cmd) return;
+
+        if (cmd.toLowerCase() === 'clear') {
+          log.innerHTML = '<div class="text-outline text-xs">// Terminal cleared. Type pwd, help, or click a chip:</div>';
+          if (input) input.value = '';
+          return;
+        }
+
+        // Prompt line
+        const cmdRow = document.createElement('div');
+        cmdRow.className = 'flex items-start gap-2 text-white pt-1';
+        cmdRow.innerHTML = '<span class="text-secondary font-semibold">guest@bashlab:~$</span><span class="text-primary font-bold">' + escapeHtml(cmd) + '</span>';
+        log.appendChild(cmdRow);
+
+        // Predefined result output
+        const resObj = RESPONSES[cmd.toLowerCase()];
+        if (resObj) {
+          const outRow = document.createElement('div');
+          outRow.className = 'pl-4 text-on-surface font-semibold text-white/90';
+          outRow.textContent = resObj.out;
+          log.appendChild(outRow);
+
+          const descRow = document.createElement('div');
+          descRow.className = 'pl-4 text-[11px] text-on-surface-variant border-l-2 border-primary/40 leading-relaxed py-0.5';
+          descRow.textContent = resObj.desc;
+          log.appendChild(descRow);
+        } else {
+          const errRow = document.createElement('div');
+          errRow.className = 'pl-4 text-xs text-outline';
+          errRow.textContent = 'This demo supports a few commands. Type help to see them.';
+          log.appendChild(errRow);
+        }
+
+        if (input) input.value = '';
+        log.scrollTop = log.scrollHeight;
+      }
+
+      if (input) {
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            executeCommand(this.value);
+          }
+        });
+      }
+
+      if (btnRun) {
+        btnRun.addEventListener('click', function() {
+          executeCommand(input.value);
+        });
+      }
+
+      if (btnClear) {
+        btnClear.addEventListener('click', function() {
+          executeCommand('clear');
+        });
+      }
+
+      chips.forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          const cmd = this.getAttribute('data-cmd');
+          executeCommand(cmd);
+        });
+      });
+
+      // FAQ accordion
+      faqToggles.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const target = document.getElementById(targetId);
+          const icon = this.querySelector('.faq-icon');
+          const isHidden = target.classList.contains('hidden');
+
+          document.querySelectorAll('.faq-content').forEach(function(c) {
+            c.classList.add('hidden');
+          });
+          document.querySelectorAll('.faq-icon').forEach(function(i) {
+            i.textContent = '+';
+          });
+
+          if (isHidden) {
+            target.classList.remove('hidden');
+            icon.textContent = '−';
+          }
+        });
+      });
+    })();
+  </script>
+
+
+</body></html>

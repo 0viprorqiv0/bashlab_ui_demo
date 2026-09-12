@@ -1,0 +1,238 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Courses // BashLab</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              green: '#00FF66',
+              cyan: '#00E5FF',
+            },
+            bg: {
+              main: '#0A0D14',
+              surface: '#141820',
+              card: '#1D2027',
+            },
+            border: {
+              subtle: '#343A43',
+              active: '#667568',
+            },
+            text: {
+              primary: '#E8E9F0',
+              secondary: '#B9CAB5',
+              muted: '#7E8B80',
+            }
+          },
+          fontFamily: {
+            heading: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    body {
+      background-color: #0A0D14;
+      color: #E8E9F0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Animated entry */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-entrance {
+      animation: fadeInUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Course Panel Hover & Top Border Expansion */
+    .course-panel {
+      position: relative;
+      border-color: #343A43;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .course-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, #00FF66 0%, #00E5FF 100%);
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+
+    .course-panel:hover {
+      border-color: #667568;
+      box-shadow: 0 12px 36px -10px rgba(0, 255, 102, 0.08);
+    }
+
+    .course-panel:hover::before {
+      width: 100%;
+    }
+
+    .course-panel:hover .cta-arrow {
+      transform: translateX(4px);
+    }
+
+    /* Progress bar transition */
+    .progress-bar-fill {
+      width: 0%;
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .progress-bar-fill.loaded {
+      width: 33%;
+    }
+  </style>
+</head>
+<body class="bg-[#0A0D14] text-[#E8E9F0] antialiased selection:bg-[#00FF66] selection:text-[#0A0D14] min-h-screen flex flex-col">
+<!-- Compact Top Application Header (56-64px) -->
+<header class="h-14 sm:h-16 border-b border-[#1F242E] bg-[#0A0D14]/95 backdrop-blur-md sticky top-0 z-50">
+<div class="max-w-[1120px] h-full mx-auto px-6 flex items-center justify-between">
+<!-- Left: Brand + Navigation -->
+<div class="flex items-center gap-8">
+<a aria-label="BashLab Home" class="flex items-center gap-2 group focus:outline-none" href="/">
+<img alt="BashLab" class="h-5 sm:h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-iBUY3dNw75hSeT9rgNLXkGIgoCFdl-nxfUG_Ik4O1ep7ETGzq21J_jatxjzkPlxXusXA5PJez9rU-kEFufz2LXeqFwHZQnvqr2yJTDmbOpbu_awRHuxk4FxHQqw1CHVhRIaES6mR2k84GNM_BdYxTs8u6ERynmPZTUUGmlijYiGqKouSvmJXVLjwK7H6SXWsJ-AFG9XuOei9WHod2xujBgbOa8JgFrqlS08B90paCnkeZrbi_LPVv2wEhzGz8Alpgx8">
+</a>
+<nav class="flex items-center gap-6 text-sm font-medium">
+<a class="text-white flex items-center gap-2 relative py-1 focus:outline-none" href="/courses">
+<span class="w-1.5 h-1.5 rounded-full bg-[#00FF66] shadow-[0_0_8px_rgba(0,255,102,0.8)]"></span>
+<span class="font-medium tracking-tight">Courses</span>
+</a>
+<a class="text-[#B9CAB5] hover:text-white transition-colors" href="/dashboard" id="nav-mylearning">
+            My learning
+          </a>
+</nav>
+</div>
+<!-- Right: Single Compact Avatar Trigger with Dropdown -->
+<div class="relative">
+<button aria-expanded="false" aria-haspopup="true" class="flex items-center gap-2.5 p-1 rounded-full sm:rounded-md hover:bg-[#1D2027] border border-transparent hover:border-[#343A43] transition focus:outline-none focus:border-[#00FF66]" id="account-menu-trigger" onclick="toggleAccountMenu()">
+<div class="w-8 h-8 rounded bg-[#1D2027] border border-[#343A43] flex items-center justify-center text-xs font-mono font-bold text-[#00FF66]">
+            AM
+          </div>
+<svg class="w-3.5 h-3.5 text-[#7E8B80] hidden sm:block transition-transform duration-200" fill="none" id="account-chevron" stroke="currentColor" viewBox="0 0 24 24">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<!-- Account Dropdown Menu -->
+<div class="hidden absolute right-0 mt-2 w-64 bg-[#141820] border border-[#343A43] rounded-lg shadow-2xl py-2 z-50 divide-y divide-[#1F242E]" id="account-dropdown">
+<!-- User info -->
+<div class="px-4 py-2.5">
+<p class="text-xs font-medium text-white">Alex Morgan</p>
+<p class="text-xs font-mono text-[#7E8B80] truncate mt-0.5">alex@example.com</p>
+</div>
+<!-- Menu items -->
+<div class="py-1">
+<a class="flex items-center px-4 py-2 text-xs font-mono text-[#B9CAB5] hover:text-white hover:bg-[#1D2027] transition-colors" href="/dashboard">
+              Account settings
+            </a>
+</div>
+<div class="py-1">
+<a class="flex items-center px-4 py-2 text-xs font-mono text-[#FF8B8B] hover:text-[#ffb4ab] hover:bg-[#1D2027] transition-colors" href="/login">
+              Log out
+            </a>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Centered readable container (1040-1160px width) with 64px top padding -->
+<main class="flex-1 max-w-[1120px] w-full mx-auto px-6 pt-16 pb-20 animate-entrance">
+<!-- Clean Page Heading -->
+<header class="mb-10 text-left">
+<h1 class="font-heading text-4xl sm:text-[36px] font-bold text-[#E8E9F0] tracking-tight leading-tight mb-3">
+        Courses
+      </h1>
+<p class="font-body text-[#B9CAB5] text-base leading-relaxed max-w-2xl">
+        Build practical Bash skills through guided lessons and hands-on practice.
+      </p>
+</header>
+<!-- Shell 101: Single Wide Editorial Panel Row -->
+<div class="space-y-8"><div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 pb-2 border-b border-[#1F242E]"><div class="relative flex-1 max-w-md"><div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#7E8B80]"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div><input class="w-full pl-10 pr-4 py-2 bg-[#141820] border border-[#343A43] rounded text-sm text-[#E8E9F0] placeholder-[#7E8B80] font-mono focus:outline-none focus:border-[#00FF66] transition-colors" placeholder="Search courses..." type="text"></div><div class="flex items-center gap-2 overflow-x-auto"><button class="px-3.5 py-1.5 rounded text-xs font-mono font-semibold bg-[#00FF66] text-[#0A0D14] transition-colors shadow-[0_0_8px_rgba(0,255,102,0.3)]">All</button><button class="px-3.5 py-1.5 rounded text-xs font-mono font-medium text-[#B9CAB5] hover:text-white bg-[#141820] hover:bg-[#1D2027] border border-[#343A43] transition-colors">Core Tracks</button><button class="px-3.5 py-1.5 rounded text-xs font-mono font-medium text-[#B9CAB5] hover:text-white bg-[#141820] hover:bg-[#1D2027] border border-[#343A43] transition-colors">Security</button></div></div><div class="space-y-6"><article class="course-panel bg-[#141820] border border-[#343A43] rounded-lg p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 group transition-all duration-200 hover:border-[#667568]"><div class="flex-1 max-w-2xl space-y-4"><div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-mono"><span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#00FF66]/10 text-[#00FF66] border border-[#00FF66]/30 uppercase tracking-wider">Beginner</span><span class="px-2 py-0.5 rounded text-[11px] font-mono text-[#B9CAB5] bg-[#1D2027] border border-[#343A43]">Core Track</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">3 Chapters</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">12 Lessons</span><span class="text-[#7E8B80]">•</span><span class="text-[#7E8B80]">Est. ~2.5 hrs</span></div><div class="space-y-2"><h2 class="font-heading text-2xl sm:text-[26px] font-bold text-white tracking-tight group-hover:text-[#00FF66] transition-colors duration-200">Shell 101 — Bash Basics</h2><p class="font-body text-sm sm:text-[15px] text-[#B9CAB5] leading-relaxed">Master command line fundamentals from navigation and directory inspection to file manipulation, redirection, and text filters.</p></div><div class="pt-1 max-w-md"><div class="flex items-center justify-between text-xs font-mono mb-2"><span class="text-[#7E8B80]">Progress</span><span class="text-[#00FF66] font-medium">4 of 12 lessons (33%)</span></div><div class="w-full h-1.5 bg-[#1D2027] rounded-full overflow-hidden"><div class="h-full bg-[#00FF66] rounded-full w-1/3"></div></div></div></div><div class="shrink-0 flex items-center md:self-center pt-2 md:pt-0"><a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#00FF66] text-[#0A0D14] font-mono text-xs sm:text-sm font-bold tracking-wide uppercase rounded hover:bg-[#20ff79] active:bg-[#00e55b] transition-all duration-150 shadow-[0_0_16px_rgba(0,255,102,0.18)] hover:shadow-[0_0_24px_rgba(0,255,102,0.3)]" href="/courses/shell-101"><span class="">View course</span><svg class="cta-arrow w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a></div></article><article class="course-panel bg-[#141820] border border-[#343A43] rounded-lg p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 group transition-all duration-200 hover:border-[#00E5FF]/50"><div class="flex-1 max-w-2xl space-y-4"><div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-mono"><span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#00E5FF]/10 text-[#00E5FF] border border-[#00E5FF]/30 uppercase tracking-wider">Intermediate</span><span class="px-2 py-0.5 rounded text-[11px] font-mono text-[#B9CAB5] bg-[#1D2027] border border-[#343A43]">Core Track</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">2 Chapters</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">8 Lessons</span><span class="text-[#7E8B80]">•</span><span class="text-[#7E8B80]">Est. ~2.0 hrs</span></div><div class="space-y-2"><h2 class="font-heading text-2xl sm:text-[26px] font-bold text-white tracking-tight group-hover:text-[#00E5FF] transition-colors duration-200">Shell 201 — Pipelines &amp; Streams</h2><p class="font-body text-sm sm:text-[15px] text-[#B9CAB5] leading-relaxed">Dive deep into standard streams (stdin, stdout, stderr), command chaining, exit codes, and building robust multi-stage data filters.</p></div><div class="pt-1 max-w-md"><div class="flex items-center justify-between text-xs font-mono mb-2"><span class="text-[#7E8B80]">Progress</span><span class="text-[#7E8B80] font-medium">Not started • 0 of 8 lessons (0%)</span></div><div class="w-full h-1.5 bg-[#1D2027] rounded-full overflow-hidden"><div class="h-full bg-[#343A43] rounded-full w-0"></div></div></div></div><div class="shrink-0 flex items-center md:self-center pt-2 md:pt-0"><a class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#1D2027] text-[#00E5FF] border border-[#00E5FF]/40 font-mono text-xs sm:text-sm font-bold tracking-wide uppercase rounded hover:bg-[#00E5FF]/10 hover:border-[#00E5FF] transition-all duration-150 shadow-[0_0_12px_rgba(0,229,255,0.1)]" href="/courses/shell-201"><span class="">View course</span><svg class="cta-arrow w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></a></div></article><article class="course-panel bg-[#141820] border border-[#343A43] rounded-lg p-7 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-8 group transition-all duration-200 hover:border-[#f59e0b]/40"><div class="flex-1 max-w-2xl space-y-4"><div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs font-mono"><span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#f59e0b]/10 text-[#f59e0b] border border-[#f59e0b]/30 uppercase tracking-wider">Intermediate</span><span class="px-2.5 py-0.5 rounded text-[11px] font-semibold bg-[#ffd7aa]/10 text-[#ffd7aa] border border-[#ffd7aa]/30 uppercase tracking-wider">Coming Soon</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">2 Chapters</span><span class="text-[#7E8B80]">•</span><span class="text-[#B9CAB5]">6 Lessons</span><span class="text-[#7E8B80]">•</span><span class="text-[#7E8B80]">Est. ~1.5 hrs</span></div><div class="space-y-2"><h2 class="font-heading text-2xl sm:text-[26px] font-bold text-white tracking-tight group-hover:text-[#ffd7aa] transition-colors duration-200">Linux Permissions &amp; Security</h2><p class="font-body text-sm sm:text-[15px] text-[#B9CAB5] leading-relaxed">Understand octal and symbolic permissions (chmod, chown), sudo privilege boundaries, process inspection, and secure workspace hygiene.</p></div><div class="pt-1 max-w-md"><div class="flex items-center gap-2 text-xs font-mono text-[#7E8B80]"><svg class="w-3.5 h-3.5 text-[#f59e0b] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg><span class="">Curriculum finalizing for sandbox release</span></div></div></div><div class="shrink-0 flex items-center md:self-center pt-2 md:pt-0"><button class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-3.5 bg-[#191b23] text-[#7E8B80] border border-[#343A43] font-mono text-xs sm:text-sm font-bold tracking-wide uppercase rounded hover:border-[#667568] hover:text-[#B9CAB5] transition-all duration-150 cursor-pointer"><span class="">View preview</span><svg class="cta-arrow w-4 h-4 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg></button></div></article></div></div>
+</main><footer class="w-full border-t border-[#343A43]/60 bg-[#0A0D14] px-8 py-6 mt-auto"><div class="max-w-[1120px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono"><div class="flex items-center gap-3 text-[#B9CAB5]"><div class="flex items-center gap-2"><span class="w-6 h-6 rounded bg-[#141820] border border-[#343A43] flex items-center justify-center text-xs font-mono font-bold text-[#00E5FF]">&gt;_</span><span class="font-bold tracking-tight text-sm font-heading"><span class="text-white">Bash</span><span class="text-[#00FF66]">Lab</span></span></div><span class="text-[#7E8B80]">—</span><span class="text-[#7E8B80]">Learn Bash by doing.</span></div><nav class="flex items-center gap-6 text-xs font-mono text-[#7E8B80]"><a class="text-[#B9CAB5] hover:text-[#00FF66] transition-colors" href="/courses">Courses</a><a class="hover:text-[#00FF66] transition-colors" href="/#how-it-works">How it works</a><a class="hover:text-[#00FF66] transition-colors" href="/#faq">FAQ</a></nav><div class="text-[#7E8B80] text-xs font-mono">© 2026 BashLab. All rights reserved.</div></div></footer>
+<!-- Interactive JavaScript: Dropdown & Smooth Progress Fill -->
+<script>
+    // Smooth progress bar fill on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const bar = document.getElementById('course-progress-bar');
+          if (bar) {
+            bar.classList.add('loaded');
+          }
+        }, 120);
+      });
+    });
+
+    // Account Menu Dropdown Toggle
+    function toggleAccountMenu() {
+      const dropdown = document.getElementById('account-dropdown');
+      const trigger = document.getElementById('account-menu-trigger');
+      const chevron = document.getElementById('account-chevron');
+      const isHidden = dropdown.classList.contains('hidden');
+
+      if (isHidden) {
+        dropdown.classList.remove('hidden');
+        trigger.setAttribute('aria-expanded', 'true');
+        if (chevron) chevron.classList.add('rotate-180');
+      } else {
+        dropdown.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
+    // Close dropdown on outside click
+    window.addEventListener('click', (e) => {
+      const dropdown = document.getElementById('account-dropdown');
+      const trigger = document.getElementById('account-menu-trigger');
+      if (dropdown && !dropdown.contains(e.target) && !trigger.contains(e.target)) {
+        dropdown.classList.add('hidden');
+        trigger.setAttribute('aria-expanded', 'false');
+        const chevron = document.getElementById('account-chevron');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    });
+
+    // Close dropdown on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const dropdown = document.getElementById('account-dropdown');
+        const trigger = document.getElementById('account-menu-trigger');
+        if (dropdown && !dropdown.classList.contains('hidden')) {
+          dropdown.classList.add('hidden');
+          trigger.setAttribute('aria-expanded', 'false');
+          const chevron = document.getElementById('account-chevron');
+          if (chevron) chevron.classList.remove('rotate-180');
+        }
+      }
+    });
+  </script>
+
+
+
+
+</body></html>

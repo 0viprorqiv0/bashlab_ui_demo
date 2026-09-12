@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "error-container": "#93000a", "on-secondary-fixed": "#001f24", "tertiary-container": "#ffd7aa", "inverse-surface": "#e1e2ec", "surface-variant": "#32353d", "surface-container-low": "#191b23", "on-secondary": "#00363d", "on-tertiary-container": "#895600", "primary-fixed-dim": "#00e55b", "tertiary-fixed": "#ffddb8", "on-secondary-fixed-variant": "#004f58", "secondary": "#bdf4ff", "on-primary-fixed-variant": "#00531b", "outline": "#849581", "inverse-primary": "#006e27", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3038", "surface-container-lowest": "#0b0e15", "outline-variant": "#3b4b3a", "on-primary": "#003911", "on-tertiary": "#472a00", "on-tertiary-fixed-variant": "#653e00", "on-surface-variant": "#b9ccb5", "error": "ffb4ab", "secondary-fixed": "#9cf0ff", "on-tertiary-fixed": "#2a1700", "on-surface": "#e1e2ec", "surface": "#10131a", "on-primary-container": "#007128", "on-primary-fixed": "#002107", "surface-dim": "#10131a", "secondary-fixed-dim": "#00daf3", "background": "#10131a", "primary-fixed": "#6bff83", "surface-container": "#1d1f27", "primary-container": "#00ff66", "tertiary": "#fff9f6", "on-background": "#e1e2ec", "tertiary-fixed-dim": "#ffb95f", "on-secondary-container": "#00616d", "secondary-container": "#00e3fd", "surface-tint": "#00e55b", "surface-container-high": "#272a32", "surface-bright": "#363941", "primary": "#edffe8", "surface-container-highest": "#32353d", "on-error": "#690005" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1rem", "space-xs": "0.25rem", "margin-desktop": "2rem", "space-lg": "1.5rem", "gutter": "1rem", "space-xl": "2.5rem", "gutter-desktop": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem" }, "fontFamily": { "headline-sm": [ "Space Grotesk" ], "headline-md": [ "Space Grotesk" ], "headline-xl": [ "Space Grotesk" ], "code-lg": [ "JetBrains Mono" ], "headline-xl-mobile": [ "Space Grotesk" ], "code-md": [ "JetBrains Mono" ], "body-md": [ "Inter" ], "label-md": [ "JetBrains Mono" ], "headline-lg": [ "Space Grotesk" ], "body-lg": [ "Inter" ], "label-sm": [ "JetBrains Mono" ], "headline-lg-mobile": [ "Space Grotesk" ], "body-sm": [ "Inter" ] }, "fontSize": { "headline-sm": [ "18px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-xl": [ "40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "code-lg": [ "15px", { "lineHeight": "24px", "fontWeight": "500" } ], "headline-xl-mobile": [ "30px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" } ], "code-md": [ "13px", { "lineHeight": "20px", "fontWeight": "400" } ], "body-md": [ "14px", { "lineHeight": "22px", "fontWeight": "400" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "500" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "body-lg": [ "16px", { "lineHeight": "26px", "fontWeight": "400" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "headline-lg-mobile": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "body-sm": [ "12px", { "lineHeight": "18px", "fontWeight": "400" } ] } } } };</script></head><body class="bg-background font-body-md text-on-surface min-h-screen flex flex-col selection:bg-primary-container selection:text-on-primary-container"><header class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.4)]"><div class="h-14 w-full px-gutter-desktop flex items-center justify-between"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm group" data-path="content" href="#"><span class="font-code-lg text-code-lg font-bold text-primary-container group-hover:drop-shadow-[0_0_8px_rgba(0,255,102,0.4)] transition-all">&gt;_</span><span class="font-headline-sm text-headline-sm tracking-tight text-on-surface">BashLab</span><span class="px-space-xs py-[2px] rounded bg-surface-container-high text-secondary font-label-sm text-label-sm uppercase tracking-wider">ADMIN</span></a><nav class="hidden md:flex items-center gap-space-lg" data-active-classes="text-primary-container font-code-md text-code-md"><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="content" href="#">Content</a><a class="font-code-md text-code-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="users" href="#">Users</a><a aria-current="page" class="transition-colors text-primary-container font-code-md text-code-md" data-path="activity" href="#">Activity</a></nav></div><div class="flex items-center gap-space-lg"><a class="font-code-md text-code-md text-on-surface-variant hover:text-secondary transition-colors flex items-center gap-space-xs" data-path="learning" href="#">← Back to learning</a><div class="flex items-center gap-space-sm pl-space-sm"><div class="text-right hidden sm:block"><div class="font-code-md text-code-md text-on-surface leading-tight">Alex Morgan</div><div class="font-label-sm text-label-sm text-outline leading-tight uppercase">Admin</div></div><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-[0_0_6px_rgba(0,255,102,0.2)]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="w-full pt-14 flex-1 bg-background"><div class="flex flex-col w-full">
+<div class="w-full px-gutter-desktop py-space-xl max-w-7xl mx-auto flex flex-col gap-space-xl">
+<!-- Top Narrative & Context Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm text-secondary font-label-sm text-label-sm tracking-widest uppercase">
+<span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_rgba(0,255,102,0.6)]"></span>
+<span>Operations • Runtime Telemetry</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Activity</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Inspect active learner sandbox sessions and review administrative audit records.
+        </p>
+</div>
+<!-- Quick Telemetry Micro Metric -->
+<div class="bg-surface-container-low rounded-xl px-space-md py-space-sm flex items-center gap-space-lg shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase">Cluster Capacity</span>
+<div class="flex items-baseline gap-space-xs">
+<span class="font-code-lg text-code-lg text-primary-container font-bold">76%</span>
+<span class="font-label-md text-label-md text-on-surface-variant">utilization</span>
+</div>
+</div>
+<div class="w-24 h-2 bg-surface-container-highest rounded-full overflow-hidden">
+<div class="bg-primary-container h-full w-[76%] rounded-full shadow-[0_0_6px_rgba(0,255,102,0.4)]"></div>
+</div>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<div class="flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-xs bg-surface-container-lowest p-1 rounded-lg">
+<button class="flex items-center gap-space-sm px-space-md py-space-xs rounded bg-surface-container text-primary-container font-code-md text-code-md shadow-sm transition-all" id="tab-btn-sessions" onclick="switchTab('sessions')">
+<span class="material-symbols-outlined text-[18px]">terminal</span>
+<span>Sessions (Active)</span>
+<span class="px-space-xs py-[1px] rounded bg-primary-container/10 text-primary-container text-label-sm font-label-sm">38</span>
+</button>
+<button class="flex items-center gap-space-sm px-space-md py-space-xs rounded text-on-surface-variant hover:text-on-surface font-code-md text-code-md transition-all" id="tab-btn-admin-log" onclick="switchTab('admin-log')">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span>Admin log</span>
+<span class="px-space-xs py-[1px] rounded bg-surface-container-high text-outline text-label-sm font-label-sm">142</span>
+</button>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="hidden sm:flex items-center gap-space-xs font-code-md text-code-md text-outline">
+<span class="material-symbols-outlined text-[16px] text-secondary">schedule</span>
+<span id="last-updated-stamp">Updated: 14:52:10 UTC</span>
+</div>
+<button class="flex items-center gap-space-xs px-space-md py-space-xs rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-code-md text-code-md shadow-sm transition-colors group" onclick="refreshData()">
+<span class="material-symbols-outlined text-[16px] text-primary-container group-hover:rotate-180 transition-transform duration-500" id="refresh-icon">refresh</span>
+<span>Refresh</span>
+</button>
+</div>
+</div>
+<!-- VIEW 1: Sessions Tab Pane -->
+<div class="flex flex-col gap-space-md transition-opacity duration-200" id="view-sessions">
+<!-- Sessions Header Strip Panel -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col md:flex-row md:items-center justify-between gap-space-md shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="font-headline-sm text-headline-sm text-on-surface">38 / 50</span>
+<span class="font-code-md text-code-md text-on-surface-variant">active sessions</span>
+</div>
+<div class="w-48 h-2 bg-surface-container-highest rounded-full overflow-hidden flex">
+<div class="h-full bg-primary-container w-[76%] rounded-full shadow-[0_0_8px_rgba(0,255,102,0.4)]"></div>
+</div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">12 available slots</span>
+</div>
+<div class="flex items-center gap-space-lg text-label-md font-label-md">
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_4px_rgba(0,255,102,0.5)]"></span>
+<span>34 Active</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed-dim"></span>
+<span>3 Idle warning</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span>1 Stopping</span>
+</div>
+</div>
+</div>
+<!-- Sessions Data Grid Card -->
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-md">
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Learner</th>
+<th class="py-space-sm px-space-md">Curriculum Module / Lesson</th>
+<th class="py-space-sm px-space-md">Status</th>
+<th class="py-space-sm px-space-md">Last Activity</th>
+<th class="py-space-sm px-space-md text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent">
+<!-- Row 1: Marcus Vance -->
+<tr class="hover:bg-surface-container-high/60 transition-colors group">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center font-code-md text-code-md text-secondary">
+                      MV
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Marcus Vance</span>
+<span class="font-code-md text-code-md text-outline truncate text-[11px]">marcus.vance@devmail.io</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Ch 02: Create directories and files</span>
+<span class="font-code-md text-code-md text-outline text-[11px]">lesson-02-05 • mkdir, touch</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-[2px] rounded bg-primary-container/10 text-primary-container font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+                    Active
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-code-md text-code-md text-on-surface-variant">
+                  24s ago
+                </td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-error-container hover:text-on-error-container text-on-surface-variant font-code-md text-code-md text-[12px] transition-colors shadow-sm" onclick="openStopModal('Marcus Vance', 'marcus.vance@devmail.io')">
+                    Stop session
+                  </button>
+</td>
+</tr>
+<!-- Row 2: Jordan Reed -->
+<tr class="hover:bg-surface-container-high/60 transition-colors bg-surface-container-lowest/30 group">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center font-code-md text-code-md text-secondary">
+                      JR
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Jordan Reed</span>
+<span class="font-code-md text-code-md text-outline truncate text-[11px]">jordan.reed@cloudsandbox.net</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Ch 03: Find matching text — grep</span>
+<span class="font-code-md text-code-md text-outline text-[11px]">lesson-03-01 • grep, egrep</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-[2px] rounded bg-tertiary-container/20 text-tertiary-fixed-dim font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed-dim"></span>
+                    Idle warning
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-code-md text-code-md text-tertiary-fixed-dim">
+                  11m ago
+                </td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-error-container hover:text-on-error-container text-on-surface-variant font-code-md text-code-md text-[12px] transition-colors shadow-sm" onclick="openStopModal('Jordan Reed', 'jordan.reed@cloudsandbox.net')">
+                    Stop session
+                  </button>
+</td>
+</tr>
+<!-- Row 3: Elena Rostov -->
+<tr class="hover:bg-surface-container-high/60 transition-colors group">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center font-code-md text-code-md text-secondary">
+                      ER
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Elena Rostov</span>
+<span class="font-code-md text-code-md text-outline truncate text-[11px]">elena.rostov@posix-sec.internal</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Ch 03: Connect commands with pipes</span>
+<span class="font-code-md text-code-md text-outline text-[11px]">lesson-03-04 • pipe, tee</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-[2px] rounded bg-error-container/30 text-error font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+                    Stopping...
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-code-md text-code-md text-outline">
+                  1m ago
+                </td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-outline/50 font-code-md text-code-md text-[12px] cursor-not-allowed" disabled="">
+                    Stopping
+                  </button>
+</td>
+</tr>
+<!-- Row 4: Taylor Swift -->
+<tr class="hover:bg-surface-container-high/60 transition-colors bg-surface-container-lowest/30 group">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center font-code-md text-code-md text-secondary">
+                      TS
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-code-md text-code-md text-on-surface font-medium truncate">Taylor Swift</span>
+<span class="font-code-md text-code-md text-outline truncate text-[11px]">t.swift99@campus-tech.edu</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Ch 01: Where am I? — pwd</span>
+<span class="font-code-md text-code-md text-outline text-[11px]">lesson-01-02 • pwd, whoami</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-[2px] rounded bg-primary-container/10 text-primary-container font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+                    Active
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-code-md text-code-md text-on-surface-variant">
+                  45s ago
+                </td>
+<td class="py-space-md px-space-md text-right">
+<button class="px-space-sm py-1 rounded bg-surface-container-high hover:bg-error-container hover:text-on-error-container text-on-surface-variant font-code-md text-code-md text-[12px] transition-colors shadow-sm" onclick="openStopModal('Taylor Swift', 't.swift99@campus-tech.edu')">
+                    Stop session
+                  </button>
+</td>
+</tr>
+<!-- Row 5: Devon Lane -->
+<tr class="hover:bg-surface-container-high/60 transition-colors opacity-75 group">
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded bg-surface-container-low flex items-center justify-center font-code-md text-code-md text-outline">
+                      DL
+                    </div>
+<div class="flex flex-col min-w-0">
+<span class="font-code-md text-code-md text-outline font-medium truncate">Devon Lane</span>
+<span class="font-code-md text-code-md text-outline/70 truncate text-[11px]">devon.lane@sysops.org</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex flex-col">
+<span class="text-outline">Ch 02: Write text to files</span>
+<span class="font-code-md text-code-md text-outline/60 text-[11px]">lesson-02-08 • echo, cat</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 px-space-xs py-[2px] rounded bg-surface-container-highest text-outline font-label-sm text-label-sm font-semibold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                    Stopped
+                  </span>
+</td>
+<td class="py-space-md px-space-md font-code-md text-code-md text-outline/70">
+                  Terminated
+                </td>
+<td class="py-space-md px-space-md text-right">
+<span class="px-space-sm py-1 rounded font-code-md text-code-md text-[12px] text-outline/40">
+                    Reclaimed
+                  </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Bar -->
+<div class="bg-surface-container-lowest px-space-md py-space-sm flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<span class="font-code-md text-code-md text-outline">
+            Showing <strong class="text-on-surface">1–5</strong> of <strong class="text-on-surface">38</strong> active sessions
+          </span>
+<div class="flex items-center gap-space-xs font-code-md text-code-md">
+<button class="px-space-sm py-1 rounded bg-surface-container-low text-outline/40 cursor-not-allowed" disabled="">
+              &lt; Prev
+            </button>
+<button class="w-8 h-8 rounded bg-primary-container text-on-primary-container font-semibold shadow-[0_0_8px_rgba(0,255,102,0.3)]">
+              1
+            </button>
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+              2
+            </button>
+<button class="w-8 h-8 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+              3
+            </button>
+<button class="px-space-sm py-1 rounded bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors shadow-sm">
+              Next &gt;
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- VIEW 2: Admin Log Tab Pane -->
+<div class="hidden flex flex-col gap-space-md transition-opacity duration-200" id="view-admin-log">
+<!-- Admin Log Filter & Stats Bar -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-xs font-code-md text-code-md text-on-surface">
+<span class="material-symbols-outlined text-secondary text-[20px]">verified_user</span>
+<span class="font-semibold">Immutable Audit Trail</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline">Last 24 hours • 142 events logged</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-code-md text-code-md text-outline">Target Filter:</span>
+<span class="px-space-xs py-[2px] rounded bg-surface-container-highest text-secondary font-code-md text-code-md">All Actions</span>
+</div>
+</div>
+<!-- Admin Log Table Card -->
+<div class="bg-surface-container rounded-xl overflow-hidden shadow-md">
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest text-outline font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md">Time (UTC)</th>
+<th class="py-space-sm px-space-md">Admin</th>
+<th class="py-space-sm px-space-md">Action / Target</th>
+<th class="py-space-sm px-space-md">Outcome</th>
+<th class="py-space-sm px-space-md text-right">Details</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent font-code-md text-code-md">
+<!-- Log Row 1 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors cursor-pointer" onclick="toggleLogDetail('log-row-1-detail')">
+<td class="py-space-md px-space-md text-on-surface-variant font-mono">
+                  14:50:02
+                </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-medium">Alex Morgan</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] rounded bg-error-container/30 text-error font-label-sm text-label-sm uppercase">SESSION_STOP</span>
+<span class="text-on-surface">Devon Lane (devon.lane@sysops.org)</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 text-primary-container font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    SUCCESS
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<span class="material-symbols-outlined text-outline text-[18px] transform transition-transform" id="log-row-1-detail-icon">expand_more</span>
+</td>
+</tr>
+<!-- Expandable Row 1 Detail -->
+<tr class="hidden bg-surface-container-lowest/80" id="log-row-1-detail">
+<td class="py-space-md px-space-lg text-body-md text-on-surface-variant" colspan="5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md font-code-md text-code-md">
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">Termination Reason</span>
+<p class="text-on-surface">"Learner requested sandbox environment reset due to corrupted bashrc."</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">Audit Payload &amp; Resource Scope</span>
+<p class="text-secondary">env_id: sbx-node-8812 • container_reclaimed: true • exit_sig: SIGTERM</p>
+</div>
+</div>
+</td>
+</tr>
+<!-- Log Row 2 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors cursor-pointer bg-surface-container-lowest/20" onclick="toggleLogDetail('log-row-2-detail')">
+<td class="py-space-md px-space-md text-on-surface-variant font-mono">
+                  14:38:19
+                </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-medium">Alex Morgan</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] rounded bg-secondary-container/20 text-secondary font-label-sm text-label-sm uppercase">CONFIG_UPDATE</span>
+<span class="text-on-surface">Lesson 03-04 Verification Test Suite</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 text-primary-container font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    SUCCESS
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<span class="material-symbols-outlined text-outline text-[18px] transform transition-transform" id="log-row-2-detail-icon">expand_more</span>
+</td>
+</tr>
+<!-- Expandable Row 2 Detail -->
+<tr class="hidden bg-surface-container-lowest/80" id="log-row-2-detail">
+<td class="py-space-md px-space-lg text-body-md text-on-surface-variant" colspan="5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md font-code-md text-code-md">
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">Change Summary</span>
+<p class="text-on-surface">Updated test regex pattern for stdout stream matching in pipe validation script.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">Target UUID</span>
+<p class="text-secondary">cfg_spec_98c19a • checksum: verified</p>
+</div>
+</div>
+</td>
+</tr>
+<!-- Log Row 3 -->
+<tr class="hover:bg-surface-container-high/60 transition-colors cursor-pointer" onclick="toggleLogDetail('log-row-3-detail')">
+<td class="py-space-md px-space-md text-on-surface-variant font-mono">
+                  14:15:44
+                </td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="text-on-surface font-medium">System Auto-Reap</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="px-space-xs py-[2px] rounded bg-surface-container-highest text-outline font-label-sm text-label-sm uppercase">IDLE_CLEANUP</span>
+<span class="text-on-surface">Anonymous Guest Sandbox #402</span>
+</div>
+</td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1 text-primary-container font-label-sm text-label-sm uppercase">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                    SUCCESS
+                  </span>
+</td>
+<td class="py-space-md px-space-md text-right">
+<span class="material-symbols-outlined text-outline text-[18px] transform transition-transform" id="log-row-3-detail-icon">expand_more</span>
+</td>
+</tr>
+<!-- Expandable Row 3 Detail -->
+<tr class="hidden bg-surface-container-lowest/80" id="log-row-3-detail">
+<td class="py-space-md px-space-lg text-body-md text-on-surface-variant" colspan="5">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md font-code-md text-code-md">
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">Idle Timeout Reason</span>
+<p class="text-on-surface">Session exceeded maximum allowed idle inactive period of 30 minutes.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="text-outline uppercase text-label-sm font-label-sm">State</span>
+<p class="text-secondary">disk_scrubbed: complete • lease_released: true</p>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Log Pagination -->
+<div class="bg-surface-container-lowest px-space-md py-space-sm flex items-center justify-between">
+<span class="font-code-md text-code-md text-outline">
+            Showing <strong class="text-on-surface">1–3</strong> of <strong class="text-on-surface">142</strong> audit records
+          </span>
+<div class="flex items-center gap-space-xs font-code-md text-code-md">
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant">Prev</button>
+<span class="px-space-sm py-1 text-primary-container font-bold">1</span>
+<button class="px-space-sm py-1 rounded bg-surface-container text-on-surface-variant">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stop Session Confirmation Modal (Compact Dialog) -->
+<div class="fixed inset-0 z-50 bg-surface-container-lowest/80 backdrop-blur-sm hidden items-center justify-center p-space-md" id="stop-modal">
+<div class="bg-surface-container rounded-xl max-w-md w-full p-space-lg shadow-[0_4px_24px_rgba(0,0,0,0.8)] flex flex-col gap-space-md relative">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm text-error">
+<span class="material-symbols-outlined text-[24px]">cancel</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Stop practice session</h2>
+</div>
+<button class="text-outline hover:text-on-surface transition-colors" onclick="closeStopModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-xs">
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Stop sandbox session for <strong class="text-on-surface font-semibold" id="modal-target-user">Jordan Reed</strong>?
+        </p>
+<p class="font-code-md text-code-md text-outline text-[12px]">
+          This will close the terminal environment, unmount learner storage, and purge active shell processes immediately.
+        </p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-outline uppercase tracking-wider" for="termination-reason">
+          Reason for termination (required)
+        </label>
+<textarea class="w-full bg-surface-container-lowest text-on-surface font-code-md text-code-md p-space-sm rounded border-0 outline-none focus:ring-1 focus:ring-primary-container transition-all placeholder:text-outline/40" id="termination-reason" placeholder="e.g. Session unresponsive, learner requested restart, idle quota exceeded..." rows="3"></textarea>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-space-md py-space-xs rounded bg-surface-container-high hover:bg-surface-bright text-on-surface font-code-md text-code-md transition-colors" onclick="closeStopModal()">
+          Cancel
+        </button>
+<button class="px-space-md py-space-xs rounded bg-error-container hover:bg-error hover:text-on-error text-on-error-container font-code-md text-code-md font-semibold transition-all shadow-sm" onclick="confirmStopSession()">
+          Stop session
+        </button>
+</div>
+</div>
+</div>
+<!-- Toast Micro-notification -->
+<div class="fixed bottom-space-lg right-space-lg z-50 bg-surface-container-high px-space-md py-space-sm rounded-lg shadow-xl hidden items-center gap-space-sm font-code-md text-code-md text-primary-container" id="toast-notif">
+<span class="material-symbols-outlined text-[18px]">info</span>
+<span id="toast-message">Session terminated successfully.</span>
+</div>
+<script>
+    function switchTab(tab) {
+      const viewSessions = document.getElementById('view-sessions');
+      const viewAdminLog = document.getElementById('view-admin-log');
+      const btnSessions = document.getElementById('tab-btn-sessions');
+      const btnAdminLog = document.getElementById('tab-btn-admin-log');
+
+      if (tab === 'sessions') {
+        viewSessions.classList.remove('hidden');
+        viewAdminLog.classList.add('hidden');
+        
+        btnSessions.className = 'flex items-center gap-space-sm px-space-md py-space-xs rounded bg-surface-container text-primary-container font-code-md text-code-md shadow-sm transition-all';
+        btnAdminLog.className = 'flex items-center gap-space-sm px-space-md py-space-xs rounded text-on-surface-variant hover:text-on-surface font-code-md text-code-md transition-all';
+      } else {
+        viewSessions.classList.add('hidden');
+        viewAdminLog.classList.remove('hidden');
+
+        btnAdminLog.className = 'flex items-center gap-space-sm px-space-md py-space-xs rounded bg-surface-container text-primary-container font-code-md text-code-md shadow-sm transition-all';
+        btnSessions.className = 'flex items-center gap-space-sm px-space-md py-space-xs rounded text-on-surface-variant hover:text-on-surface font-code-md text-code-md transition-all';
+      }
+    }
+
+    function toggleLogDetail(id) {
+      const detailRow = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (detailRow.classList.contains('hidden')) {
+        detailRow.classList.remove('hidden');
+        if (icon) icon.classList.add('rotate-180');
+      } else {
+        detailRow.classList.add('hidden');
+        if (icon) icon.classList.remove('rotate-180');
+      }
+    }
+
+    let currentTarget = 'Jordan Reed';
+    function openStopModal(name, email) {
+      currentTarget = name;
+      document.getElementById('modal-target-user').innerText = name + ' (' + email + ')';
+      document.getElementById('termination-reason').value = '';
+      const modal = document.getElementById('stop-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeStopModal() {
+      const modal = document.getElementById('stop-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function confirmStopSession() {
+      closeStopModal();
+      showToast('Sandbox session for ' + currentTarget + ' stopped.');
+    }
+
+    function refreshData() {
+      const icon = document.getElementById('refresh-icon');
+      icon.classList.add('animate-spin');
+      setTimeout(() => {
+        icon.classList.remove('animate-spin');
+        const now = new Date();
+        const timeStr = now.toISOString().substring(11, 19) + ' UTC';
+        document.getElementById('last-updated-stamp').innerText = 'Updated: ' + timeStr;
+        showToast('Telemetry refreshed.');
+      }, 500);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notif');
+      document.getElementById('toast-message').innerText = msg;
+      toast.classList.remove('hidden');
+      toast.classList.add('flex');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+        toast.classList.remove('flex');
+      }, 3200);
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-lowest/80 py-space-md mt-auto shadow-[0_-1px_8px_rgba(0,0,0,0.3)]"><div class="w-full px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-space-sm"><div class="flex items-center gap-space-xs font-code-md text-code-md text-on-surface-variant"><span class="text-primary-container font-bold">&gt;_</span><span>BashLab — Learn Bash by doing.</span></div><div class="flex items-center gap-space-lg font-code-md text-code-md text-on-surface-variant"><a class="hover:text-on-surface transition-colors" data-path="courses" href="#">Courses</a><a class="hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How it works</a><span class="text-outline text-label-sm font-label-sm">© 2026 BashLab. All rights reserved.</span></div></div></footer></body></html>
