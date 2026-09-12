@@ -6,6 +6,21 @@ Tài liệu tổng hợp **17 trang hiện có trên Stitch**, thuộc dự án 
 
 Phạm vi: mô tả chức năng thể hiện trong bản thiết kế và HTML xuất từ Stitch, không xác nhận backend đã triển khai. Giữ nguyên bộ chức năng hiện tại.
 
+## Phân nhóm chức năng
+
+| Nhóm | Mục đích | STT trang | Screen Stitch |
+| --- | --- | --- | --- |
+| A — Giới thiệu sản phẩm | Giới thiệu BashLab và dẫn vào khóa học | 01 | 01 |
+| B — Xác thực tài khoản | Đăng nhập, đăng ký, xác minh email và khôi phục mật khẩu | 02–06 | 02–06 |
+| C — Khám phá khóa học | Duyệt khóa học, xem giáo trình và tiến độ trong từng khóa | 07–08 | 07–08 |
+| D — Học tập và thực hành | Theo dõi học tập cá nhân, tiếp tục bài và thực hành Bash | 09–10 | 09–10 |
+| E — Tài khoản cá nhân | Xem thông tin tài khoản, yêu cầu đổi mật khẩu và đăng xuất | 11 | 12 |
+| F — Quản trị nội dung | Quản lý khóa học, chương và soạn bài học | 12–13 | 14, 16 |
+| G — Quản trị vận hành | Quản lý người dùng, phiên thực hành và nhật ký quản trị | 14–15 | 17–18 |
+| H — Trang hệ thống | Thông báo truy cập không đủ quyền hoặc trang không tồn tại | 16–17 | 20–21 |
+
+Các nhóm dùng để tổ chức tài liệu, không tạo thêm trang hay chức năng. Nhóm F và G dành cho quản trị viên; nhóm H dùng chung theo tình huống truy cập.
+
 ## Danh mục
 
 | STT | Screen Stitch | Trang | Vai trò chính |
@@ -28,7 +43,9 @@ Phạm vi: mô tả chức năng thể hiện trong bản thiết kế và HTML 
 | 16 | 20 | Access Denied | Thông báo không đủ quyền truy cập |
 | 17 | 21 | Page Not Found | Thông báo không tìm thấy trang |
 
-## 01. Landing — Trang chủ
+## Nhóm A — Giới thiệu sản phẩm
+
+### 01. Landing — Trang chủ
 
 **Screen:** `01_Landing_Desktop` · **Đối tượng:** khách truy cập.
 
@@ -42,7 +59,9 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh trang chủ](exports/stitch-2026-09-12/images/01_Landing_Desktop.png)
 
-## 02. Login — Đăng nhập
+## Nhóm B — Xác thực tài khoản
+
+### 02. Login — Đăng nhập
 
 **Screen:** `02_Login_Desktop` · **Đối tượng:** người đã có tài khoản.
 
@@ -53,7 +72,7 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh đăng nhập](exports/stitch-2026-09-12/images/02_Login_Desktop.png)
 
-## 03. Register — Đăng ký
+### 03. Register — Đăng ký
 
 **Screen:** `03_Register_Desktop` · **Đối tượng:** người dùng mới.
 
@@ -64,7 +83,7 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh đăng ký](exports/stitch-2026-09-12/images/03_Register_Desktop.png)
 
-## 04. Verify Email — Xác minh email
+### 04. Verify Email — Xác minh email
 
 **Screen:** `04_VerifyEmail_Desktop` · **Đối tượng:** người cần xác minh email.
 
@@ -76,7 +95,7 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh xác minh email](exports/stitch-2026-09-12/images/04_VerifyEmail_Desktop.png)
 
-## 05. Forgot Password — Quên mật khẩu
+### 05. Forgot Password — Quên mật khẩu
 
 **Screen:** `05_ForgotPassword_Desktop` · **Đối tượng:** người không nhớ mật khẩu.
 
@@ -88,7 +107,7 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh quên mật khẩu](exports/stitch-2026-09-12/images/05_ForgotPassword_Desktop.png)
 
-## 06. Reset Password — Đặt lại mật khẩu
+### 06. Reset Password — Đặt lại mật khẩu
 
 **Screen:** `06_ResetPassword_Desktop` · **Đối tượng:** người mở liên kết đặt lại mật khẩu.
 
@@ -100,7 +119,9 @@ Demo tại Landing không phải phiên Bash thật. Không gian thực hành ch
 
 [Ảnh đặt lại mật khẩu](exports/stitch-2026-09-12/images/06_ResetPassword_Desktop.png)
 
-## 07. Course Catalog — Danh sách khóa học
+## Nhóm C — Khám phá khóa học
+
+### 07. Course Catalog — Danh sách khóa học
 
 **Screen:** `07_CourseCatalog_Desktop` · **Đối tượng:** người khám phá khóa học; bản xuất minh họa người đã đăng nhập.
 
@@ -115,7 +136,7 @@ Trang này không có terminal thực hành.
 
 [Ảnh danh sách khóa học](exports/stitch-2026-09-12/images/07_CourseCatalog_Desktop.png)
 
-## 08. Course Overview — Tổng quan khóa học
+### 08. Course Overview — Tổng quan khóa học
 
 **Screen:** `08_CourseOverview_Desktop` · **Đối tượng:** người tìm hiểu hoặc đang học một khóa.
 
@@ -130,7 +151,9 @@ Trang này không có terminal thực hành.
 
 [Ảnh tổng quan khóa học](exports/stitch-2026-09-12/images/08_CourseOverview_Desktop.png)
 
-## 09. My Learning — Tổng quan học tập cá nhân
+## Nhóm D — Học tập và thực hành
+
+### 09. My Learning — Tổng quan học tập cá nhân
 
 **Screen:** `09_MyLearning_Desktop` · **Đối tượng:** người học đã đăng nhập.
 
@@ -144,7 +167,7 @@ Trang này không có terminal thực hành.
 
 [Ảnh My Learning](exports/stitch-2026-09-12/images/09_MyLearning_Desktop.png)
 
-## 10. Interactive Lesson Workspace — Không gian học và thực hành
+### 10. Interactive Lesson Workspace — Không gian học và thực hành
 
 **Screen:** `10_InteractiveLessonWorkspace_Desktop` · **Đối tượng:** người học đang thực hiện một bài.
 
@@ -160,7 +183,9 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 
 [Ảnh không gian thực hành](exports/stitch-2026-09-12/images/10_InteractiveLessonWorkspace_Desktop.png)
 
-## 11. Account — Tài khoản
+## Nhóm E — Tài khoản cá nhân
+
+### 11. Account — Tài khoản
 
 **Screen:** `12_Account_Desktop` · **Đối tượng:** người dùng đã đăng nhập.
 
@@ -171,7 +196,9 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 
 [Ảnh tài khoản](exports/stitch-2026-09-12/images/12_Account_Desktop.png)
 
-## 12. Content — Quản lý nội dung
+## Nhóm F — Quản trị nội dung
+
+### 12. Content — Quản lý nội dung
 
 **Screen:** `14_Content_Desktop` · **Đối tượng:** quản trị viên.
 
@@ -184,7 +211,7 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 
 [Ảnh quản lý nội dung](exports/stitch-2026-09-12/images/14_Content_Desktop.png)
 
-## 13. Lesson Editor — Soạn bài học
+### 13. Lesson Editor — Soạn bài học
 
 **Screen:** `16_LessonEditor_Desktop` · **Đối tượng:** quản trị viên.
 
@@ -197,7 +224,9 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 
 [Ảnh soạn bài học](exports/stitch-2026-09-12/images/16_LessonEditor_Desktop.png)
 
-## 14. Users — Quản lý người dùng
+## Nhóm G — Quản trị vận hành
+
+### 14. Users — Quản lý người dùng
 
 **Screen:** `17_Users_Desktop` · **Đối tượng:** quản trị viên.
 
@@ -210,11 +239,11 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 
 [Ảnh quản lý người dùng](exports/stitch-2026-09-12/images/17_Users_Desktop.png)
 
-## 15. Activity — Phiên thực hành và nhật ký quản trị
+### 15. Activity — Phiên thực hành và nhật ký quản trị
 
 **Screen:** `18_Activity_Desktop` · **Đối tượng:** quản trị viên.
 
-### Tab Sessions
+#### Tab Sessions
 
 - Hiển thị số phiên, sức chứa và trạng thái sử dụng.
 - Xem người học, bài đang thực hành, trạng thái phiên và thời điểm hoạt động gần nhất.
@@ -222,7 +251,7 @@ Thiết kế dành cho thực hành Bash thật trong sandbox; ảnh và HTML m�
 - Dừng phiên bằng hộp thoại xác nhận có lý do bắt buộc.
 - Hiển thị trạng thái đang dừng, đã dừng và thông báo kết quả.
 
-### Tab Admin log
+#### Tab Admin log
 
 - Xem thời gian, người thực hiện, hành động, đối tượng và kết quả.
 - Lọc theo hành động và chuyển trang nhật ký.
@@ -232,7 +261,9 @@ Hai tab nằm trong cùng một trang Activity.
 
 [Ảnh hoạt động](exports/stitch-2026-09-12/images/18_Activity_Desktop.png)
 
-## 16. Access Denied — Không đủ quyền
+## Nhóm H — Trang hệ thống
+
+### 16. Access Denied — Không đủ quyền
 
 **Screen:** `20_AccessDenied_Desktop` · **Đối tượng:** người truy cập tài nguyên không được phép.
 
@@ -243,7 +274,7 @@ Bản xuất hiện tại chỉ thể hiện thông báo, chưa có nút quay l�
 
 [Ảnh không đủ quyền](exports/stitch-2026-09-12/images/20_AccessDenied_Desktop.png)
 
-## 17. Page Not Found — Không tìm thấy trang
+### 17. Page Not Found — Không tìm thấy trang
 
 **Screen:** `21_PageNotFound_Desktop` · **Đối tượng:** người truy cập địa chỉ không tồn tại.
 
@@ -276,4 +307,3 @@ Bản xuất hiện tại chỉ thể hiện thông báo, chưa có nút quay l�
 - [Manifest xuất từ Stitch](exports/stitch-2026-09-12/manifest.json).
 - [Bộ 17 ảnh gốc](exports/stitch-2026-09-12/BashLab-Stitch-17-screens.zip).
 - [Danh mục prompt trước đó](stitch-prompts/README.md).
-
